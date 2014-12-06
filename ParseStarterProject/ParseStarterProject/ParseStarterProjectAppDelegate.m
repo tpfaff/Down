@@ -116,13 +116,13 @@
 ///////////////////////////////////////////////////////////
 // Uncomment this method if you want to use Push Notifications with Background App Refresh
 ///////////////////////////////////////////////////////////
-/*
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     if (application.applicationState == UIApplicationStateInactive) {
         [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
     }
 }
- */
+ 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
