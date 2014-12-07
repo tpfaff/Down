@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //TDP logOut
-    [PFUser logOut];
+    //[PFUser logOut];
     
     
 }
