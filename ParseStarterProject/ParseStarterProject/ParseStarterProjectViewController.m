@@ -18,9 +18,9 @@
 
 @interface ParseStarterProjectViewController(){}
 
-@property (strong,nonatomic)TPSplashScreenViewController* splashScreenViewController;
-@property (strong,nonatomic)UINavigationController* rootNavigationController;
-@property (nonatomic) BOOL showingSplashScreen;
+//@property (strong,nonatomic)TPSplashScreenViewController* splashScreenViewController;
+//@property (strong,nonatomic)UINavigationController* rootNavigationController;
+//@property (nonatomic) BOOL showingSplashScreen;
 @end
 
 
@@ -87,7 +87,6 @@
 -(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
  
     //[self popViewControllerAnimated:YES];z
-    self.showingSplashScreen=YES;
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"dismissed view controller");
     //    [self pushSplashScreenViewController];
@@ -104,11 +103,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)pushSplashScreenViewController{
-    self.splashScreenViewController=[[TPSplashScreenViewController alloc]init];
-    [self.splashScreenViewController view];
-    [self presentViewController:self.splashScreenViewController animated:YES completion:NULL];
-}
+//-(void)pushSplashScreenViewController{
+//    self.splashScreenViewController=[[TPSplashScreenViewController alloc]init];
+//    [self.splashScreenViewController view];
+//    [self presentViewController:self.splashScreenViewController animated:YES completion:NULL];
+//}
 
 -(void)presentMailBoxViewController{
     TPMailBoxViewController* mailBoxViewController=[[TPMailBoxViewController alloc]initWithNibName:@"TPMailBoxViewController" bundle:nil];
