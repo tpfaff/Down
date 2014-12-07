@@ -43,6 +43,8 @@
 		D526EF391A330E8A00861D2C /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D526EF2E1A330E8A00861D2C /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		D526EF3A1A330E8A00861D2C /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D526EF301A330E8A00861D2C /* View+MASAdditions.m */; };
 		D526EF411A3325DD00861D2C /* ParseStarterProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D526EF401A3325DD00861D2C /* ParseStarterProjectViewController.xib */; };
+		D526EF431A33C04700861D2C /* TPMailBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D526EF421A33C04700861D2C /* TPMailBoxViewController.m */; };
+		D526EF461A33D85600861D2C /* TPMailBoxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D526EF451A33D85600861D2C /* TPMailBoxViewController.xib */; };
 		DD952FCB16E7F5CF00470144 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E18B1E1624CB5700B17A67 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +110,9 @@
 		D526EF301A330E8A00861D2C /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
 		D526EF311A330E8A00861D2C /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		D526EF401A3325DD00861D2C /* ParseStarterProjectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParseStarterProjectViewController.xib; sourceTree = "<group>"; };
+		D526EF421A33C04700861D2C /* TPMailBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMailBoxViewController.m; sourceTree = "<group>"; };
+		D526EF441A33C05900861D2C /* TPMailBoxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPMailBoxViewController.h; sourceTree = "<group>"; };
+		D526EF451A33D85600861D2C /* TPMailBoxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMailBoxViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,16 +190,12 @@
 		09ABC07713A1D52D009C3FCF /* ParseStarterProject */ = {
 			isa = PBXGroup;
 			children = (
-				D526EF401A3325DD00861D2C /* ParseStarterProjectViewController.xib */,
-				09ABC08013A1D52D009C3FCF /* ParseStarterProjectAppDelegate.h */,
 				09ABC08113A1D52D009C3FCF /* ParseStarterProjectAppDelegate.m */,
-				09ABC08313A1D52D009C3FCF /* MainWindow.xib */,
-				09ABC08613A1D52E009C3FCF /* ParseStarterProjectViewController.h */,
-				09ABC08713A1D52E009C3FCF /* ParseStarterProjectViewController.m */,
+				09ABC08013A1D52D009C3FCF /* ParseStarterProjectAppDelegate.h */,
+				D526EF491A33DC0800861D2C /* Libraries */,
 				09ABC07813A1D52D009C3FCF /* Supporting Files */,
-				D526EF151A3309DF00861D2C /* TPSplashScreenViewController.m */,
-				D526EF171A3309F800861D2C /* TPSplashScreenViewController.h */,
-				D526EF1A1A330E8A00861D2C /* Masonry */,
+				D526EF481A33DBE300861D2C /* View Controllers */,
+				D526EF471A33DBB000861D2C /* Xibs */,
 			);
 			path = ParseStarterProject;
 			sourceTree = "<group>";
@@ -242,6 +243,37 @@
 				D526EF311A330E8A00861D2C /* View+MASShorthandAdditions.h */,
 			);
 			path = Masonry;
+			sourceTree = "<group>";
+		};
+		D526EF471A33DBB000861D2C /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				D526EF451A33D85600861D2C /* TPMailBoxViewController.xib */,
+				09ABC08313A1D52D009C3FCF /* MainWindow.xib */,
+				D526EF401A3325DD00861D2C /* ParseStarterProjectViewController.xib */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
+		D526EF481A33DBE300861D2C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				09ABC08613A1D52E009C3FCF /* ParseStarterProjectViewController.h */,
+				09ABC08713A1D52E009C3FCF /* ParseStarterProjectViewController.m */,
+				D526EF441A33C05900861D2C /* TPMailBoxViewController.h */,
+				D526EF421A33C04700861D2C /* TPMailBoxViewController.m */,
+				D526EF171A3309F800861D2C /* TPSplashScreenViewController.h */,
+				D526EF151A3309DF00861D2C /* TPSplashScreenViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D526EF491A33DC0800861D2C /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				D526EF1A1A330E8A00861D2C /* Masonry */,
+			);
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +334,7 @@
 				C4C51B571613CE0800959FDC /* Default.png in Resources */,
 				C4C51B581613CE0800959FDC /* Default-568h@2x.png in Resources */,
 				C4C51B591613CE0800959FDC /* Default@2x.png in Resources */,
+				D526EF461A33D85600861D2C /* TPMailBoxViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +358,7 @@
 				D526EF161A3309DF00861D2C /* TPSplashScreenViewController.m in Sources */,
 				D526EF321A330E8A00861D2C /* MASCompositeConstraint.m in Sources */,
 				D526EF391A330E8A00861D2C /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				D526EF431A33C04700861D2C /* TPMailBoxViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +425,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ParseStarterProject/ParseStarterProject-Prefix.pch";
 				INFOPLIST_FILE = "ParseStarterProject/ParseStarterProject-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -411,6 +446,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ParseStarterProject/ParseStarterProject-Prefix.pch";
 				INFOPLIST_FILE = "ParseStarterProject/ParseStarterProject-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

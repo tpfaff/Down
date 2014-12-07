@@ -13,6 +13,7 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 #import "TPSplashScreenViewController.h"
+#import "TPMailBoxViewController.h"
 
 
 @interface ParseStarterProjectViewController(){}
@@ -55,9 +56,11 @@
         
     }else{
         NSLog(@"User %@ is logged in",[PFUser currentUser]);
-        if(!self.showingSplashScreen){
-            [self pushSplashScreenViewController];
-        }
+        [NSTimer scheduledTimerWithTimeInterval:2
+                                         target:self
+                                       selector:@selector(presentMailBoxViewController)
+                                       userInfo:nil
+                                        repeats:NO];
     }
 
    }
@@ -77,13 +80,17 @@
     
 }
 
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 -(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
  
     //[self popViewControllerAnimated:YES];z
     self.showingSplashScreen=YES;
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"dismissed view controller");
-        [self pushSplashScreenViewController];
+    //    [self pushSplashScreenViewController];
     }];
     
     
@@ -101,6 +108,11 @@
     self.splashScreenViewController=[[TPSplashScreenViewController alloc]init];
     [self.splashScreenViewController view];
     [self presentViewController:self.splashScreenViewController animated:YES completion:NULL];
+}
+
+-(void)presentMailBoxViewController{
+    TPMailBoxViewController* mailBoxViewController=[[TPMailBoxViewController alloc]initWithNibName:@"TPMailBoxViewController" bundle:nil];
+    [self presentViewController:mailBoxViewController animated:YES completion:NULL];
 }
 
 - (void)didReceiveMemoryWarning {
