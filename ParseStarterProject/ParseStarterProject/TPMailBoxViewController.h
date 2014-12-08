@@ -12,7 +12,10 @@
 //#define ParseStarterProject_TPMailBoxViewController_h
 
 @interface TPMailBoxViewController : UIViewController
-    @property (strong,nonatomic)IBOutlet UIView* myView;
+@property (strong, nonatomic) UIButton *buttonReceieved;
+@property (strong, nonatomic) UIButton *buttonSent;
+@property (strong, nonatomic) UIImageView* imageViewDecorativeFloral;
+
 @end
 //
 //#endif

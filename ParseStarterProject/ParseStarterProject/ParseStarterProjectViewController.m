@@ -110,7 +110,7 @@
 //}
 
 -(void)presentMailBoxViewController{
-    TPMailBoxViewController* mailBoxViewController=[[TPMailBoxViewController alloc]initWithNibName:@"TPMailBoxViewController" bundle:nil];
+    TPMailBoxViewController* mailBoxViewController=[[TPMailBoxViewController alloc]init];
     [self presentViewController:mailBoxViewController animated:YES completion:NULL];
 }
 

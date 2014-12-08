@@ -44,7 +44,6 @@
 		D526EF3A1A330E8A00861D2C /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D526EF301A330E8A00861D2C /* View+MASAdditions.m */; };
 		D526EF411A3325DD00861D2C /* ParseStarterProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D526EF401A3325DD00861D2C /* ParseStarterProjectViewController.xib */; };
 		D526EF431A33C04700861D2C /* TPMailBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D526EF421A33C04700861D2C /* TPMailBoxViewController.m */; };
-		D526EF461A33D85600861D2C /* TPMailBoxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D526EF451A33D85600861D2C /* TPMailBoxViewController.xib */; };
 		D526EF4C1A34C2E800861D2C /* TPOutBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D526EF4B1A34C2E800861D2C /* TPOutBoxViewController.m */; };
 		DD952FCB16E7F5CF00470144 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E18B1E1624CB5700B17A67 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -113,9 +112,9 @@
 		D526EF401A3325DD00861D2C /* ParseStarterProjectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParseStarterProjectViewController.xib; sourceTree = "<group>"; };
 		D526EF421A33C04700861D2C /* TPMailBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMailBoxViewController.m; sourceTree = "<group>"; };
 		D526EF441A33C05900861D2C /* TPMailBoxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPMailBoxViewController.h; sourceTree = "<group>"; };
-		D526EF451A33D85600861D2C /* TPMailBoxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPMailBoxViewController.xib; sourceTree = "<group>"; };
 		D526EF4B1A34C2E800861D2C /* TPOutBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPOutBoxViewController.m; sourceTree = "<group>"; };
 		D526EF4D1A34C30300861D2C /* TPOutBoxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPOutBoxViewController.h; sourceTree = "<group>"; };
+		D5F3DE171A358BB300C0A5A6 /* TPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +213,7 @@
 				09ABC07A13A1D52D009C3FCF /* InfoPlist.strings */,
 				09ABC07D13A1D52D009C3FCF /* ParseStarterProject-Prefix.pch */,
 				09ABC07E13A1D52D009C3FCF /* main.m */,
+				D5F3DE171A358BB300C0A5A6 /* TPConstants.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -251,7 +251,6 @@
 		D526EF471A33DBB000861D2C /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				D526EF451A33D85600861D2C /* TPMailBoxViewController.xib */,
 				09ABC08313A1D52D009C3FCF /* MainWindow.xib */,
 				D526EF401A3325DD00861D2C /* ParseStarterProjectViewController.xib */,
 			);
@@ -339,7 +338,6 @@
 				C4C51B571613CE0800959FDC /* Default.png in Resources */,
 				C4C51B581613CE0800959FDC /* Default-568h@2x.png in Resources */,
 				C4C51B591613CE0800959FDC /* Default@2x.png in Resources */,
-				D526EF461A33D85600861D2C /* TPMailBoxViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +419,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -443,6 +442,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
