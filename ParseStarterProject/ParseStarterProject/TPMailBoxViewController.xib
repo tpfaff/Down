@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08r-It-tXw">
-                    <rect key="frame" x="70" y="83" width="234" height="234"/>
+                    <rect key="frame" x="70" y="81" width="234" height="234"/>
                     <state key="normal" image="buttonReceived">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -31,17 +31,21 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imageFloral" translatesAutoresizingMaskIntoConstraints="NO" id="pAk-v6-d6o">
-                    <rect key="frame" x="148" y="0.0" width="227" height="154"/>
+                    <rect key="frame" x="180" y="0.0" width="195" height="154"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mockBadge" translatesAutoresizingMaskIntoConstraints="NO" id="Chi-Iz-kjH">
+                    <rect key="frame" x="226" y="60" width="60" height="94"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="513.5" y="238.5"/>
+            <point key="canvasLocation" x="515.5" y="239.5"/>
         </view>
     </objects>
     <resources>
         <image name="buttonReceived" width="379" height="380"/>
         <image name="buttonSent" width="380" height="380"/>
         <image name="imageFloral" width="394" height="279"/>
+        <image name="mockBadge" width="117" height="119"/>
     </resources>
 </document>

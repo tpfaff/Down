@@ -9,7 +9,8 @@
 #ifndef ParseStarterProject_TPOutBoxViewController_h
 #define ParseStarterProject_TPOutBoxViewController_h
 
-@interface TPOutBoxViewController : UITableViewController <UITableViewDataSource,UITableViewDelegate>
+@interface TPOutBoxViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
