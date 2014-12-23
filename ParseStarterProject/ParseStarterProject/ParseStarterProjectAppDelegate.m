@@ -6,6 +6,7 @@
 //
 
 #import <Parse/Parse.h>
+#import "TPUniverse.h"
 
 // If you want to use any of the UI components, uncomment this line
 // #import <ParseUI/ParseUI.h>
@@ -14,7 +15,7 @@
 // #import <ParseFacebookUtils/PFFacebookUtils.h>
 
 #import "ParseStarterProjectAppDelegate.h"
-#import "ParseStarterProjectViewController.h"
+#import "TPRootViewController.h"
 
 @implementation ParseStarterProjectAppDelegate
 
@@ -40,8 +41,9 @@
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
 
     // Override point for customization after application launch.
-
-    self.window.rootViewController = self.viewController;
+    [TPUniverse setNavigationController:[[UINavigationController alloc]initWithRootViewController:self.viewController]];
+    self.window.rootViewController = [TPUniverse navigationController];
+    
     [self.window makeKeyAndVisible];
 
     if (application.applicationState != UIApplicationStateBackground) {

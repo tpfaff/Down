@@ -5,7 +5,7 @@
 //  Copyright 2014 Parse, Inc. All rights reserved.
 //
 
-#import "ParseStarterProjectViewController.h"
+#import "TPRootViewController.h"
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
@@ -14,29 +14,35 @@
 #import <Accounts/Accounts.h>
 #import "TPSplashScreenViewController.h"
 #import "TPMailBoxViewController.h"
+#import "ParseStarterProjectAppDelegate.h"
+#import "TPUniverse.h"
 
 
-@interface ParseStarterProjectViewController(){}
+@interface TPRootViewController(){}
 
 //@property (strong,nonatomic)TPSplashScreenViewController* splashScreenViewController;
-//@property (strong,nonatomic)UINavigationController* rootNavigationController;
 //@property (nonatomic) BOOL showingSplashScreen;
 @end
 
 
-@implementation ParseStarterProjectViewController
+@implementation TPRootViewController
 
 #pragma mark - UIViewController
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     //TDP logOut
-    //[PFUser logOut];
+   // self.navigationController=[[UINavigationController alloc]initWithRootViewController:self];
+   // [self.view.window setRootViewController:self.navigationController];
+    //[self.navigationController pushViewController:self animated:YES];
+    [PFUser logOut];
     
     
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -48,11 +54,13 @@
         PFSignUpViewController* signUpViewController=[[PFSignUpViewController alloc]init];
         [signUpViewController setDelegate:self];
         
+        //[signUpViewController.view setBackgroundColor:[UIColor redColor]];
         [logInViewController setSignUpController:signUpViewController];
         
         //Present the log in view controller
-        [self.navigationController pushViewController:logInViewController animated:YES];
-        [self presentViewController:logInViewController animated:YES completion:NULL];
+        [[TPUniverse navigationController] pushViewController:logInViewController animated:YES];
+      
+        //[self presentViewController:logInViewController animated:YES completion:NULL];
         
     }else{
         NSLog(@"User %@ is logged in",[PFUser currentUser]);
@@ -65,6 +73,9 @@
 
    }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [[TPUniverse navigationController]setNavigationBarHidden:NO];
+}
 -(BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password{
     if(username && password && username.length!=0 && password.length!=0){
         return YES;
@@ -87,13 +98,13 @@
 -(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
  
     //[self popViewControllerAnimated:YES];z
-    [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"dismissed view controller");
-    //    [self pushSplashScreenViewController];
-    }];
-    
-    
-   }
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        NSLog(@"dismissed view controller");
+//    //    [self pushSplashScreenViewController];
+//    }];
+    [[TPUniverse navigationController]popViewControllerAnimated:NO];
+    //[self presentMailBoxViewController];
+}
 
 -(void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error{
     NSLog(@"Failed to log in! Error: %@",error);
@@ -111,7 +122,8 @@
 
 -(void)presentMailBoxViewController{
     TPMailBoxViewController* mailBoxViewController=[[TPMailBoxViewController alloc]initWithNibName:@"TPMailBoxViewController" bundle:nil];
-    [self presentViewController:mailBoxViewController animated:YES completion:NULL];
+    [[TPUniverse navigationController]pushViewController:mailBoxViewController animated:YES];
+    //[self presentViewController:mailBoxViewController animated:YES completion:NULL];
 }
 
 - (void)didReceiveMemoryWarning {

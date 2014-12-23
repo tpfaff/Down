@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TPMailBoxViewController.h"
+#import "TPUniverse.h"
 
 @interface TPMailBoxViewController(){}
 //@property (strong, nonatomic) IBOutlet UIView *mailView;
@@ -23,8 +24,12 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    //Never gets called!!!!
+    [[TPUniverse navigationController]setNavigationBarHidden:YES];
     
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[TPUniverse navigationController]setNavigationBarHidden:NO];
 }
 -(id)init{
     if(self=[super init]){
@@ -42,11 +47,9 @@
     return self;
 }
 - (IBAction)presentOutboxViewController:(id)sender {
-    //[self dismissViewControllerAnimated:YES completion:^{
         UITableViewController* outBoxViewController=[[UITableViewController alloc]init];
-        [self presentViewController:outBoxViewController animated:YES completion:NULL];
-   // }];
-}
+        [[TPUniverse navigationController]pushViewController:outBoxViewController animated:YES];
+        }
 
 -(BOOL)prefersStatusBarHidden{
     return YES;

@@ -7,12 +7,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class ParseStarterProjectViewController;
+@class TPRootViewController;
 
 @interface ParseStarterProjectAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
 
-@property (nonatomic, strong) IBOutlet ParseStarterProjectViewController *viewController;
+@property (nonatomic,strong)UINavigationController* navigationController;
+@property (nonatomic, strong) IBOutlet TPRootViewController *viewController;
 
 @end

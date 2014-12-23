@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
-@interface ParseStarterProjectViewController : UIViewController <PFLogInViewControllerDelegate,PFSignUpViewControllerDelegate>
+@interface TPRootViewController : UIViewController <PFLogInViewControllerDelegate,PFSignUpViewControllerDelegate>
+@property (strong,nonatomic)UINavigationController* navigationController;
 
 @end
