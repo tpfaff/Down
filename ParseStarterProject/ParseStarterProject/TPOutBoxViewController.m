@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TPOutBoxViewController.h"
-
+#import "TPUniverse.h"
 
 @interface TPOutBoxViewController(){}
 
@@ -23,4 +23,14 @@
   return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //UINavigationItem* navigationItem=[[UINavigationItem alloc]initWithTitle:@"Sent Invites"];
+   // [TPUniverse navigationController].navigationItem=navigationItem;
+    UIBarButtonItem* bbi=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewInvite)];
+    [self navigationItem].rightBarButtonItem=bbi;
+    [self navigationItem].title=@"Sent Invites";
+
+    //[TPUniverse navigationController].navigationItem.rightBarButtonItem=bbi;
+}
 @end

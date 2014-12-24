@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TPMailBoxViewController.h"
+#import "TPOutBoxViewController.h"
 #import "TPUniverse.h"
 
 @interface TPMailBoxViewController(){}
@@ -47,8 +48,9 @@
     return self;
 }
 - (IBAction)presentOutboxViewController:(id)sender {
-        UITableViewController* outBoxViewController=[[UITableViewController alloc]init];
-        [[TPUniverse navigationController]pushViewController:outBoxViewController animated:YES];
+        //UITableViewController* outBoxViewController=[[UITableViewController alloc]init];
+    TPOutBoxViewController* outBoxViewController=[[TPOutBoxViewController alloc]init];
+    [[TPUniverse navigationController]pushViewController:outBoxViewController animated:YES];
         }
 
 -(BOOL)prefersStatusBarHidden{
