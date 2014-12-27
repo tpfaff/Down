@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9573EDF4-D7DB-41DC-936F-6F1A6D1420A3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Down</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C045D7F91AF6A32B9CB97A22A0537A43B8A28F50</key>
+		<string>https://github.com/tpfaff/Down.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ParseStarterProject/Down.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C045D7F91AF6A32B9CB97A22A0537A43B8A28F50</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/tpfaff/Down.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C045D7F91AF6A32B9CB97A22A0537A43B8A28F50</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C045D7F91AF6A32B9CB97A22A0537A43B8A28F50</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Down</string>
+		</dict>
+	</array>
+</dict>
+</plist>

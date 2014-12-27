@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "TPOutBoxViewController.h"
 #import "TPUniverse.h"
+#import "TPEventInviteCreationViewController.h"
 
 @interface TPOutBoxViewController(){}
 
@@ -27,10 +28,15 @@
     [super viewWillAppear:animated];
     //UINavigationItem* navigationItem=[[UINavigationItem alloc]initWithTitle:@"Sent Invites"];
    // [TPUniverse navigationController].navigationItem=navigationItem;
-    UIBarButtonItem* bbi=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewInvite)];
+    UIBarButtonItem* bbi=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showEventInviteCreationViewController)];
     [self navigationItem].rightBarButtonItem=bbi;
     [self navigationItem].title=@"Sent Invites";
 
     //[TPUniverse navigationController].navigationItem.rightBarButtonItem=bbi;
+}
+
+-(void)showEventInviteCreationViewController{
+    TPEventInviteCreationViewController* vc=[[TPEventInviteCreationViewController alloc]initWithNibName:@"TPEventInviteCreationViewController" bundle:nil];
+    [[TPUniverse navigationController]pushViewController:vc animated:YES];
 }
 @end
