@@ -16,6 +16,7 @@
 -(id)init{
     if(self=[super init]){
         self.imageViewLocation=[[UIImageView alloc]init];
+        self.imageViewLocation.contentMode=UIViewContentModeScaleAspectFit;
         self.imageViewHostPeople=[[UIImageView alloc]init];
         self.imageViewInvitedPeople=[[UIImageView alloc]init];
         self.viewButtonHolder=[[UIView alloc]init];
@@ -37,8 +38,10 @@
 //        make.height.equalTo(@);
 //       // make.top.equalTo([TPUniverse navigationController].view.mas_bottom);
 //    }];
-
+    
+    UIBarButtonItem* bbi=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(doSomething)];
     [self navigationItem].title=@"New Invite";
+    [self navigationItem].rightBarButtonItem=bbi;
 }
 
 
@@ -53,29 +56,32 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.viewButtonHolder mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.right.and.bottom.equalTo(self.view);
-        make.height.equalTo(@90);
-        [self.viewButtonHolder setBackgroundColor:[UIColor lightGrayColor]];
-        
-    }];
-    
-    [self.butttonDown setBackgroundImage:[UIImage imageNamed:@"downLogo"] forState:UIControlStateNormal];
-    
-    [self.butttonDown mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.centerY.equalTo(self.viewButtonHolder);
-        make.height.equalTo(@80);
-        make.width.equalTo(@80);
-    }];
-    
-    double height=self.viewButtonHolder.frame.size.height;
+//    [self.viewButtonHolder mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.and.right.and.bottom.equalTo(self.view);
+//        make.height.equalTo(@90);
+//        [self.viewButtonHolder setBackgroundColor:[UIColor lightGrayColor]];
+//        
+//    }];
+//    
+//    [self.butttonDown setBackgroundImage:[UIImage imageNamed:@"downLogo"] forState:UIControlStateNormal];
+//    
+//    [self.butttonDown mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self.view);
+//        make.centerY.equalTo(self.viewButtonHolder);
+//        make.height.equalTo(@80);
+//        make.width.equalTo(@80);
+//    }];
+
     //154=90+44+20 = button container view height +nagvigation controller height + status bar height
-    NSNumber* oneThirdOfRemaingSpace=[[NSNumber alloc]initWithDouble:((self.view.frame.size.height-154)/3)];
+    long navigationControllerheight=44;
+    long statusBarHeight=20;
+    long heightOffset=self.viewButtonHolder.frame.size.height+navigationControllerheight+statusBarHeight;
+    
+    NSNumber* oneThirdOfRemaingSpace=[[NSNumber alloc]initWithDouble:((self.view.frame.size.height-heightOffset)/3)];
     
     [self.imageViewInvitedPeople mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.equalTo(self.view);
-        make.bottom.equalTo(self.viewButtonHolder.mas_top);
+        make.bottom.equalTo(self.view.mas_bottom);
         make.height.equalTo(oneThirdOfRemaingSpace);
         [self.imageViewInvitedPeople setBackgroundColor:[UIColor blueColor]];
     }];
@@ -91,7 +97,8 @@
         make.left.and.right.equalTo(self.view);
         make.bottom.equalTo(self.imageViewHostPeople.mas_top);
         make.height.equalTo(oneThirdOfRemaingSpace);
-        [self.imageViewLocation setBackgroundColor:[UIColor redColor]];
+        [self.imageViewLocation setBackgroundColor:[UIColor lightGrayColor]];
+        [self.imageViewLocation setImage:[UIImage imageNamed:@"locationIcon"]];
     }];
 }
 @end
