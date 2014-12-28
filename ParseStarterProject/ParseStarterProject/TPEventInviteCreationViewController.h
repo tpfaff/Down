@@ -10,10 +10,11 @@
 #define ParseStarterProject_TPEventInviteCreationViewController_h
 
 @interface TPEventInviteCreationViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIView *view;
-@property (strong, nonatomic) IBOutlet UIImageView *mockInviteView;
-@property (strong, nonatomic) IBOutlet UIImageView *locationImageView;
-@property (strong, nonatomic) IBOutlet UIButton *buttonDown;
+@property (strong,nonatomic) UIImageView* imageViewLocation;
+@property (strong,nonatomic) UIImageView* imageViewHostPeople;
+@property (strong,nonatomic) UIImageView* imageViewInvitedPeople;
+@property (strong,nonatomic) UIView*      viewButtonHolder;
+@property (strong,nonatomic) UIButton*    butttonDown;
 
 @end
 

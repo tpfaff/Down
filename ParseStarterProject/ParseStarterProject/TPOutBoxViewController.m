@@ -36,7 +36,7 @@
 }
 
 -(void)showEventInviteCreationViewController{
-    TPEventInviteCreationViewController* vc=[[TPEventInviteCreationViewController alloc]initWithNibName:@"TPEventInviteCreationViewController" bundle:nil];
+    TPEventInviteCreationViewController* vc=[[TPEventInviteCreationViewController alloc]init];
     [[TPUniverse navigationController]pushViewController:vc animated:YES];
 }
 @end
