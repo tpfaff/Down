@@ -9,12 +9,13 @@
 #ifndef ParseStarterProject_TPEventInviteCreationViewController_h
 #define ParseStarterProject_TPEventInviteCreationViewController_h
 
-@interface TPEventInviteCreationViewController : UIViewController
+@interface TPEventInviteCreationViewController : UIViewController <UITabBarControllerDelegate>
 @property (strong,nonatomic) UIImageView* imageViewLocation;
 @property (strong,nonatomic) UIImageView* imageViewHostPeople;
 @property (strong,nonatomic) UIImageView* imageViewInvitedPeople;
 @property (strong,nonatomic) UIView*      viewButtonHolder;
 @property (strong,nonatomic) UIButton*    butttonDown;
+@property (strong,nonatomic) UITabBarController* tabBarController;
 
 @end
 

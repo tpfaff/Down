@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "TPEventInviteCreationViewController.h"
 #import "TPUniverse.h"
+#import "TPLocationViewController.h"
+#import "TPPeopleViewController.h"
+
 #import "Masonry.h"
 
 @implementation TPEventInviteCreationViewController
@@ -21,12 +24,21 @@
         self.imageViewInvitedPeople=[[UIImageView alloc]init];
         self.viewButtonHolder=[[UIView alloc]init];
         self.butttonDown=[[UIButton alloc]init];
+        self.tabBarController=[[UITabBarController alloc]init];
+        self.tabBarController.delegate=self;
+        TPLocationViewController* locationViewController=[[TPLocationViewController alloc]init];
+        locationViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Where" image:nil selectedImage:nil];
+        TPPeopleViewController* peopleViewController=[[TPPeopleViewController alloc]init];
+        peopleViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Who" image:nil selectedImage:nil];
+        [self.tabBarController setViewControllers:@[locationViewController,peopleViewController] animated:YES];
+        
     }
     return self;
 }
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+   // [self addChildViewController:self.tabBarController];
     [self addAllViewsAsSubviews];
     
 
@@ -40,6 +52,7 @@
 //    }];
     
     UIBarButtonItem* bbi=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(doSomething)];
+    [self.tabBarController tabBarItem].image=[UIImage imageNamed:@"locationIcon"];
     [self navigationItem].title=@"New Invite";
     [self navigationItem].rightBarButtonItem=bbi;
 }
@@ -52,6 +65,7 @@
     [self.view addSubview:self.imageViewInvitedPeople];
     [self.view addSubview:self.imageViewHostPeople];
     [self.view addSubview:self.butttonDown];
+    [self.view addSubview:self.tabBarController.view];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -79,26 +93,30 @@
     
     NSNumber* oneThirdOfRemaingSpace=[[NSNumber alloc]initWithDouble:((self.view.frame.size.height-heightOffset)/3)];
     
-    [self.imageViewInvitedPeople mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.right.equalTo(self.view);
-        make.bottom.equalTo(self.view.mas_bottom);
-        make.height.equalTo(oneThirdOfRemaingSpace);
-        [self.imageViewInvitedPeople setBackgroundColor:[UIColor blueColor]];
-    }];
+//    [self.imageViewInvitedPeople mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.and.right.equalTo(self.view);
+//        make.bottom.equalTo(self.view.mas_bottom);
+//        make.height.equalTo(oneThirdOfRemaingSpace);
+//        [self.imageViewInvitedPeople setBackgroundColor:[UIColor blueColor]];
+//    }];
+//    
+//    [self.imageViewHostPeople mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.and.right.equalTo(self.view);
+//        make.bottom.equalTo(self.imageViewInvitedPeople.mas_top);
+//        make.height.equalTo(oneThirdOfRemaingSpace);
+//        [self.imageViewHostPeople setBackgroundColor:[UIColor greenColor]];
+//    }];
+//   
+//    [self.imageViewLocation mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.and.right.equalTo(self.view);
+//        make.bottom.equalTo(self.imageViewHostPeople.mas_top);
+//        make.height.equalTo(oneThirdOfRemaingSpace);
+//        [self.imageViewLocation setBackgroundColor:[UIColor lightGrayColor]];
+//        [self.imageViewLocation setImage:[UIImage imageNamed:@"locationIcon"]];
+//    }];
+}
+
+-(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     
-    [self.imageViewHostPeople mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.right.equalTo(self.view);
-        make.bottom.equalTo(self.imageViewInvitedPeople.mas_top);
-        make.height.equalTo(oneThirdOfRemaingSpace);
-        [self.imageViewHostPeople setBackgroundColor:[UIColor greenColor]];
-    }];
-   
-    [self.imageViewLocation mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.right.equalTo(self.view);
-        make.bottom.equalTo(self.imageViewHostPeople.mas_top);
-        make.height.equalTo(oneThirdOfRemaingSpace);
-        [self.imageViewLocation setBackgroundColor:[UIColor lightGrayColor]];
-        [self.imageViewLocation setImage:[UIImage imageNamed:@"locationIcon"]];
-    }];
 }
 @end
