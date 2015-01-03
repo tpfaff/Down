@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Down-AFOAuth2Manager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Down-Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1C673A5ABF1C3904FAC2175C</key>
+		<key>01601BA72A180343CBB06E71</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3B1239CA1859ACA16D86F3F8</key>
+		<key>2B5754367BD3C6A2C67EF46B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>87CF23FB2D0307C3C2EF9D3E</key>
+		<key>40A1F70EA86987658035FBD4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A75D86BFCC0129F2629E4AFA</key>
+		<key>68C04EB05B2A0629A8F3983D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CE7A679A39923B95C7F8E4CB</key>
+		<key>B3851D4F42F2A80FA473539B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FF8818911194B6202D429A18</key>
+		<key>BE5DFC125D2A89779CA2357F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EE7B131032CA9A006F13B877</key>
 		<dict>
 			<key>primary</key>
 			<true/>

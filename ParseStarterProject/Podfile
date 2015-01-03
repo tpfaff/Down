@@ -3,6 +3,7 @@ platform :ios, '8.0'
 
 target 'Down' do
 pod 'AFNetworking', '2.5.0'
+pod 'AFOAuth2Manager'
 pod 'Masonry', '0.5.3'
 pod 'Parse'
 pod 'Facebook-iOS-SDK'

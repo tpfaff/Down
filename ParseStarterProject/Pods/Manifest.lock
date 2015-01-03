@@ -20,6 +20,8 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AFOAuth2Manager (2.0.0):
+    - AFNetworking (~> 2.2)
   - Bolts (1.1.3)
   - Facebook-iOS-SDK (3.21.1):
     - Bolts (~> 1.0)
@@ -29,12 +31,14 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 2.5.0)
+  - AFOAuth2Manager
   - Facebook-iOS-SDK
   - Masonry (= 0.5.3)
   - Parse
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  AFOAuth2Manager: a7726957cbc14c229b5d5d648c934453b6bb55b0
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   Facebook-iOS-SDK: 18c26e86ab25c17854a2ee2a8f60562099c6600f
   Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
