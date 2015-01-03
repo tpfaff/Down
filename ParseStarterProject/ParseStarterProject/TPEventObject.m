@@ -16,12 +16,13 @@
         self.when=[[NSString alloc]init];
         self.who=[[NSMutableArray alloc]init];
         self.why=[[NSString alloc]init];
+        self.from=[[NSString alloc]init];
     }
     return self;
 }
 
 -(NSString*)description{
-    NSString* description=[NSString stringWithFormat:@"Where:%@ \n When:%@ \n Who:%@ \n Why:%@",self.where,self.when,[self.who objectAtIndex:0],self.why];
+    NSString* description=[NSString stringWithFormat:@"Where:%@ \n When:%@ \n Who:%@ \n Why:%@ \n From:%@",self.where,self.when,[self.who objectAtIndex:0],self.why,self.from];
     
     return description;
 }

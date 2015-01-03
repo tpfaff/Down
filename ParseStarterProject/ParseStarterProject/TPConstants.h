@@ -12,4 +12,5 @@
 #define kTPEvent                @"Event"
 #define kTPEventLocation        @"Location"
 #define kTPEventInviteList      @"Invited"
+#define kTPEventFrom            @"From"
 #endif

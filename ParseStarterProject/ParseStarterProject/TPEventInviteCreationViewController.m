@@ -129,8 +129,12 @@
 }
 
 -(BOOL)packageAndSendInvite{
-    [self packageInvite];
+    BOOL success=[self packageInvite];
+  //  if(success){
     [self sendInvite];
+  //  }else{
+        NSLog(@"Invite object was not created fully, invitation not sent");
+ //   }
 }
 
 -(BOOL)packageInvite{
@@ -146,17 +150,35 @@
     
     self.event.where=where;
     self.event.who=@[@"tpfaff2"];
+    self.event.from=[PFUser currentUser].username;
+    
+    if([self inviteIsComplete]){
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+-(BOOL)inviteIsComplete{
+    if(self.event.who && self.event.where && self.event.when && self.event.why && self.event.from){
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 -(BOOL)sendInvite{
     PFObject* eventInvitation=[PFObject objectWithClassName:kTPEvent];
     [eventInvitation setObject:self.event.where forKey:kTPEventLocation];
     [eventInvitation setObject:self.event.who forKey:kTPEventInviteList];
+    [eventInvitation setObject:self.event.from forKey:kTPEventFrom];
+    
+    
     [eventInvitation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded){
-            NSLog(@"Sent invite %@",self.event.description);
+            NSLog(@"Sent invite %@",self.event);
         }else{
-            NSLog(@"Failed to send event invite! : Event:%@  \n Error:%@",self.event.description,error);
+            NSLog(@"Failed to send event invite! : Event:%@  \n Error:%@",self.event,error);
         }
     }];
 }

@@ -16,5 +16,6 @@
 @property (strong,nonatomic) NSString* when;
 @property (strong,nonatomic) NSMutableArray* who;
 @property (strong,nonatomic) NSString* why;
+@property (strong,nonatomic) NSString* from;
 
 @end
