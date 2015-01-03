@@ -6,6 +6,7 @@
 //
 //
 #import <UIKit/UIKit.h>
+#import "TPEventObject.h"
 #ifndef ParseStarterProject_TPEventInviteCreationViewController_h
 #define ParseStarterProject_TPEventInviteCreationViewController_h
 
@@ -16,7 +17,7 @@
 @property (strong,nonatomic) UIView*      viewButtonHolder;
 @property (strong,nonatomic) UIButton*    butttonDown;
 @property (strong,nonatomic) UITabBarController* tabBarController;
-
+@property (strong,nonatomic) TPEventObject* event;
 @end
 
 #endif

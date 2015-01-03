@@ -38,6 +38,7 @@
 		D526EF4C1A34C2E800861D2C /* TPOutBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D526EF4B1A34C2E800861D2C /* TPOutBoxViewController.m */; };
 		D533E6251A50191400C11961 /* TPLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D533E6241A50191400C11961 /* TPLocationViewController.m */; };
 		D533E6291A501B3A00C11961 /* TPPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D533E6281A501B3A00C11961 /* TPPeopleViewController.m */; };
+		D540660B1A57B0B5007A28EF /* TPEventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D540660A1A57B0B5007A28EF /* TPEventObject.m */; };
 		D569110F1A50D49900AB45F9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D569110E1A50D49900AB45F9 /* MapKit.framework */; };
 		D5E5C87E1A491E0E00E22912 /* TPUniverse.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E5C87D1A491E0E00E22912 /* TPUniverse.m */; };
 		D5E5C8841A4C102200E22912 /* TPEventInviteCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E5C8831A4C102200E22912 /* TPEventInviteCreationViewController.m */; };
@@ -94,6 +95,9 @@
 		D533E6261A50192700C11961 /* TPLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPLocationViewController.h; sourceTree = "<group>"; };
 		D533E6271A501B3A00C11961 /* TPPeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPeopleViewController.h; sourceTree = "<group>"; };
 		D533E6281A501B3A00C11961 /* TPPeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPeopleViewController.m; sourceTree = "<group>"; };
+		D54066091A57B0B5007A28EF /* TPEventObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPEventObject.h; sourceTree = "<group>"; };
+		D540660A1A57B0B5007A28EF /* TPEventObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPEventObject.m; sourceTree = "<group>"; };
+		D540660C1A57BA91007A28EF /* TPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPConstants.h; sourceTree = "<group>"; };
 		D569110E1A50D49900AB45F9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D5E5C87D1A491E0E00E22912 /* TPUniverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPUniverse.m; sourceTree = "<group>"; };
 		D5E5C87F1A491E4500E22912 /* TPUniverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPUniverse.h; sourceTree = "<group>"; };
@@ -250,6 +254,9 @@
 				D5E5C87F1A491E4500E22912 /* TPUniverse.h */,
 				D51EBB6C1A525BE10095A865 /* TPYelpClient.h */,
 				D51EBB6D1A525BE10095A865 /* TPYelpClient.m */,
+				D54066091A57B0B5007A28EF /* TPEventObject.h */,
+				D540660A1A57B0B5007A28EF /* TPEventObject.m */,
+				D540660C1A57BA91007A28EF /* TPConstants.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -373,6 +380,7 @@
 				D51EBB6E1A525BE10095A865 /* TPYelpClient.m in Sources */,
 				09ABC08213A1D52D009C3FCF /* ParseStarterProjectAppDelegate.m in Sources */,
 				D533E6291A501B3A00C11961 /* TPPeopleViewController.m in Sources */,
+				D540660B1A57B0B5007A28EF /* TPEventObject.m in Sources */,
 				D526EF4C1A34C2E800861D2C /* TPOutBoxViewController.m in Sources */,
 				D5E5C8841A4C102200E22912 /* TPEventInviteCreationViewController.m in Sources */,
 				09ABC08813A1D52E009C3FCF /* TPRootViewController.m in Sources */,

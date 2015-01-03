@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 #import "TPEventInviteCreationViewController.h"
 #import "TPUniverse.h"
 #import "TPLocationViewController.h"
 #import "TPPeopleViewController.h"
-
+#import "TPEventObject.h"
 #import "Masonry.h"
+#import "TPConstants.h"
 
 @implementation TPEventInviteCreationViewController
 
@@ -31,6 +33,7 @@
         TPPeopleViewController* peopleViewController=[[TPPeopleViewController alloc]init];
         peopleViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Who" image:nil selectedImage:nil];
         [self.tabBarController setViewControllers:@[locationViewController,peopleViewController] animated:YES];
+        self.event=[[TPEventObject alloc]init];
         
     }
     return self;
@@ -51,7 +54,12 @@
 //       // make.top.equalTo([TPUniverse navigationController].view.mas_bottom);
 //    }];
     
-    UIBarButtonItem* bbi=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(doSomething)];
+    BOOL send=YES;
+    UIBarButtonItem* bbi=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                      target:self
+                                                                      action:@selector(packageAndSendInvite)
+                          ];
+    
     [self.tabBarController tabBarItem].image=[UIImage imageNamed:@"locationIcon"];
     [self navigationItem].title=@"New Invite";
     [self navigationItem].rightBarButtonItem=bbi;
@@ -119,4 +127,38 @@
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     
 }
+
+-(BOOL)packageAndSendInvite{
+    [self packageInvite];
+    [self sendInvite];
+}
+
+-(BOOL)packageInvite{
+    //Build our event object with data from our tabbar view controllers
+    NSMutableDictionary* eventDetails=[[NSMutableDictionary alloc]init];
+    NSArray* tabBarViewControllers=[self.tabBarController viewControllers];
+    
+    //where,when,who,why
+    NSString* where=[(TPLocationViewController*)[tabBarViewControllers objectAtIndex:0]valueForKey:@"where"];
+//    NSString* when;
+//    NSArray* who;
+//    NSString* why=;
+    
+    self.event.where=where;
+    self.event.who=@[@"tpfaff2"];
+}
+
+-(BOOL)sendInvite{
+    PFObject* eventInvitation=[PFObject objectWithClassName:kTPEvent];
+    [eventInvitation setObject:self.event.where forKey:kTPEventLocation];
+    [eventInvitation setObject:self.event.who forKey:kTPEventInviteList];
+    [eventInvitation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if(succeeded){
+            NSLog(@"Sent invite %@",self.event.description);
+        }else{
+            NSLog(@"Failed to send event invite! : Event:%@  \n Error:%@",self.event.description,error);
+        }
+    }];
+}
+
 @end

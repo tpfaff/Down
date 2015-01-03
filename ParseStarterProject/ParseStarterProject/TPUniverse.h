@@ -10,6 +10,7 @@
 #define ParseStarterProject_TPUniverse_h
 
 @interface TPUniverse : NSObject
+
 +(void)setNavigationController:(UINavigationController*)controller;
 +(UINavigationController*)navigationController;
 @end

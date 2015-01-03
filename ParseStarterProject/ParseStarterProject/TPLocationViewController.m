@@ -61,6 +61,7 @@
     if(status == kCLAuthorizationStatusAuthorizedWhenInUse){
         self.mapView.showsUserLocation=YES;
         [self.locationManager startUpdatingLocation];
+        self.where=@"San Diego,CA";//this doesn't belong here, just for testing.
         
     }
 }
@@ -68,6 +69,7 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
   //  [self zoomToUserLocation:[locations objectAtIndex:0]];
     [self zoomToUserLocation:self.mapView.userLocation];
+    //self.where=self.mapView.userLocation.description;
 }
 
 - (void)zoomToUserLocation:(MKUserLocation *)userLocation
@@ -80,6 +82,7 @@
         region.span = MKCoordinateSpanMake(2.0, 2.0); //Zoom distance
         region = [self.mapView regionThatFits:region];
         [self.mapView setRegion:region animated:YES];
+       
     }
 
 

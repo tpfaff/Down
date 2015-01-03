@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "TPUniverse.h"
 static UINavigationController* navigationController;
-
 @implementation TPUniverse
 
 +(void)setNavigationController:(UINavigationController*)controller{
