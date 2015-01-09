@@ -13,6 +13,8 @@
 #import "TPLocationViewController.h"
 #import "TPPeopleViewController.h"
 #import "TPEventObject.h"
+#import "TPWhenViewController.h"
+#import "TPWhyViewController.h"
 #import "Masonry.h"
 #import "TPConstants.h"
 
@@ -32,7 +34,14 @@
         locationViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Where" image:nil selectedImage:nil];
         TPPeopleViewController* peopleViewController=[[TPPeopleViewController alloc]init];
         peopleViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Who" image:nil selectedImage:nil];
-        [self.tabBarController setViewControllers:@[locationViewController,peopleViewController] animated:YES];
+        
+        TPWhenViewController* whenViewController=[[TPWhenViewController alloc]init];
+        whenViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"When" image:nil selectedImage:nil];
+        
+        TPWhyViewController* whyViewController=[[TPWhyViewController alloc]init];
+        whyViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Why" image:nil selectedImage:nil];
+        
+        [self.tabBarController setViewControllers:@[locationViewController,peopleViewController,whenViewController,whyViewController] animated:YES];
         self.event=[[TPEventObject alloc]init];
         
     }
@@ -95,9 +104,9 @@
 //    }];
 
     //154=90+44+20 = button container view height +nagvigation controller height + status bar height
-    long navigationControllerheight=44;
-    long statusBarHeight=20;
-    long heightOffset=self.viewButtonHolder.frame.size.height+navigationControllerheight+statusBarHeight;
+//    long navigationControllerheight=44;
+//    long statusBarHeight=20;
+    long heightOffset=self.viewButtonHolder.frame.size.height+kTPNavigationAndStatusBarHeight;
     
     NSNumber* oneThirdOfRemaingSpace=[[NSNumber alloc]initWithDouble:((self.view.frame.size.height-heightOffset)/3)];
     

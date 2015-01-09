@@ -13,4 +13,5 @@
 #define kTPEventLocation        @"Location"
 #define kTPEventInviteList      @"Invited"
 #define kTPEventFrom            @"From"
+#define kTPNavigationAndStatusBarHeight 64
 #endif
