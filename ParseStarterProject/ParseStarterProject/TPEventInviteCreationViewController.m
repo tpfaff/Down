@@ -32,6 +32,8 @@
         self.tabBarController.delegate=self;
         TPLocationViewController* locationViewController=[[TPLocationViewController alloc]init];
         locationViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Where" image:nil selectedImage:nil];
+        locationViewController.delegate=self;
+        
         TPPeopleViewController* peopleViewController=[[TPPeopleViewController alloc]init];
         peopleViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Who" image:nil selectedImage:nil];
         
@@ -188,7 +190,7 @@
 //    NSArray* who;
 //    NSString* why=;
     
-    self.event.where=where;
+    self.event.location=where;
     self.event.who=@[@"tpfaff2"];
     self.event.from=[PFUser currentUser].username;
     
@@ -200,7 +202,7 @@
 }
 
 -(BOOL)inviteIsComplete{
-    if(self.event.who && self.event.where && self.event.when && self.event.why && self.event.from){
+    if(self.event.who && self.event.location && self.event.when && self.event.why && self.event.from){
         return YES;
     }else{
         return NO;
@@ -209,7 +211,7 @@
 
 -(BOOL)sendInvite{
     PFObject* eventInvitation=[PFObject objectWithClassName:kTPEvent];
-    [eventInvitation setObject:self.event.where forKey:kTPEventLocation];
+    [eventInvitation setObject:self.event.location forKey:kTPEventLocation];
     [eventInvitation setObject:self.event.who forKey:kTPEventInviteList];
     [eventInvitation setObject:self.event.from forKey:kTPEventFrom];
     
@@ -223,5 +225,7 @@
     }];
 }
 
-
+-(void)TPLocationViewController:(TPLocationViewController *)viewController didSelectLocation:(TPLocation *)location{
+    self.event.location=location;
+}
 @end

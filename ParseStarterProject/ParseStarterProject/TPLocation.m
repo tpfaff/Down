@@ -20,6 +20,6 @@ return self;
 }
 
 -(NSString *)description{
-    return [NSString stringWithFormat:@" Name:%@ \n Phone Number:%@ \n Address:%@ \n URL:%@ \n Coordinates:%f,%f",self.name,self.phoneNumber,self.address,self.url,self.coordinate->latitude,self.coordinate->longitude];
+    return [NSString stringWithFormat:@" Name:%@ \n Phone Number:%@ \n Address:%@ \n URL:%@ \n Coordinates:%f,%f",self.name,self.phoneNumber,self.address,self.url,self.coordinate.latitude,self.coordinate.longitude];
 }
 @end

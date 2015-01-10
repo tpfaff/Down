@@ -7,10 +7,11 @@
 //
 #import <UIKit/UIKit.h>
 #import "TPEventObject.h"
+#import "TPLocationViewController.h"
 #ifndef ParseStarterProject_TPEventInviteCreationViewController_h
 #define ParseStarterProject_TPEventInviteCreationViewController_h
 
-@interface TPEventInviteCreationViewController : UIViewController <UITabBarControllerDelegate>
+@interface TPEventInviteCreationViewController : UIViewController <UITabBarControllerDelegate,TPLocationViewControllerDelegate>
 @property (strong,nonatomic) UIImageView* imageViewLocation;
 @property (strong,nonatomic) UIImageView* imageViewHostPeople;
 @property (strong,nonatomic) UIImageView* imageViewInvitedPeople;

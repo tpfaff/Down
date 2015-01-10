@@ -13,7 +13,7 @@
 
 -(id)init{
     if(self=[super init]){
-        self.where=[[TPLocation alloc]init];
+        self.location=[[TPLocation alloc]init];
         self.when=[[NSString alloc]init];
         self.who=[[NSMutableArray alloc]init];
         self.why=[[NSString alloc]init];
@@ -23,7 +23,7 @@
 }
 
 -(NSString*)description{
-    NSString* description=[NSString stringWithFormat:@"Where:%@ \n When:%@ \n Who:%@ \n Why:%@ \n From:%@",self.where,self.when,[self.who objectAtIndex:0],self.why,self.from];
+    NSString* description=[NSString stringWithFormat:@"Where:%@ \n When:%@ \n Who:%@ \n Why:%@ \n From:%@",self.location,self.when,[self.who objectAtIndex:0],self.why,self.from];
     
     return description;
 }

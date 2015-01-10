@@ -136,9 +136,19 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    for(MKPointAnnotation* annotation in self.searchResults){
-        if([self.searchResults indexOfObject:annotation]){
-            
+    
+//    view.annotation.
+//    for(MKMapItem* item in self.mapView.selectedAnnotations){
+//        
+//    }
+    for(MKMapItem* item in self.searchResults){
+        if([item.name isEqualToString:[[[mapView selectedAnnotations]objectAtIndex:0] title]]){
+            TPLocation* selectedLocation=[[TPLocation alloc]init];
+            selectedLocation.name=item.name;
+            selectedLocation.phoneNumber=item.phoneNumber;
+            selectedLocation.url=item.url;
+            selectedLocation.coordinate=item.placemark.coordinate;
+            [self.delegate TPLocationViewController:self didSelectLocation:selectedLocation];
         }
     }
 }
