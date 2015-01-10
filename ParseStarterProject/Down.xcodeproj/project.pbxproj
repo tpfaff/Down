@@ -239,6 +239,7 @@
 		D526EF481A33DBE300861D2C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D5B783011A61193D009D8757 /* Event Creation */,
 				09ABC08613A1D52E009C3FCF /* TPRootViewController.h */,
 				09ABC08713A1D52E009C3FCF /* TPRootViewController.m */,
 				D526EF441A33C05900861D2C /* TPMailBoxViewController.h */,
@@ -247,16 +248,6 @@
 				D526EF151A3309DF00861D2C /* TPSplashScreenViewController.m */,
 				D526EF4B1A34C2E800861D2C /* TPOutBoxViewController.m */,
 				D526EF4D1A34C30300861D2C /* TPOutBoxViewController.h */,
-				D5E5C8831A4C102200E22912 /* TPEventInviteCreationViewController.m */,
-				D5E5C8851A4C103A00E22912 /* TPEventInviteCreationViewController.h */,
-				D533E6241A50191400C11961 /* TPLocationViewController.m */,
-				D533E6261A50192700C11961 /* TPLocationViewController.h */,
-				D533E6271A501B3A00C11961 /* TPPeopleViewController.h */,
-				D533E6281A501B3A00C11961 /* TPPeopleViewController.m */,
-				D540660D1A57E446007A28EF /* TPWhenViewController.h */,
-				D540660E1A57E446007A28EF /* TPWhenViewController.m */,
-				D54066101A5A567C007A28EF /* TPWhyViewController.h */,
-				D54066111A5A567C007A28EF /* TPWhyViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -270,6 +261,23 @@
 				D5B782FF1A60F58F009D8757 /* TPLocation.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		D5B783011A61193D009D8757 /* Event Creation */ = {
+			isa = PBXGroup;
+			children = (
+				D5E5C8831A4C102200E22912 /* TPEventInviteCreationViewController.m */,
+				D5E5C8851A4C103A00E22912 /* TPEventInviteCreationViewController.h */,
+				D533E6241A50191400C11961 /* TPLocationViewController.m */,
+				D533E6261A50192700C11961 /* TPLocationViewController.h */,
+				D533E6271A501B3A00C11961 /* TPPeopleViewController.h */,
+				D533E6281A501B3A00C11961 /* TPPeopleViewController.m */,
+				D540660D1A57E446007A28EF /* TPWhenViewController.h */,
+				D540660E1A57E446007A28EF /* TPWhenViewController.m */,
+				D54066101A5A567C007A28EF /* TPWhyViewController.h */,
+				D54066111A5A567C007A28EF /* TPWhyViewController.m */,
+			);
+			name = "Event Creation";
 			sourceTree = "<group>";
 		};
 		D5E5C87A1A491D6900E22912 /* Helpers */ = {
@@ -470,6 +478,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reyaad Sidique (2A4E3FAY4U)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -482,6 +491,7 @@
 				INFOPLIST_FILE = "ParseStarterProject/Down-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = Down;
+				PROVISIONING_PROFILE = "1ae6c806-c8d9-4ba3-b5a9-3870d755833a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -493,6 +503,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reyaad Sidique (2A4E3FAY4U)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -504,6 +515,7 @@
 				INFOPLIST_FILE = "ParseStarterProject/Down-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = Down;
+				PROVISIONING_PROFILE = "1ae6c806-c8d9-4ba3-b5a9-3870d755833a";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
