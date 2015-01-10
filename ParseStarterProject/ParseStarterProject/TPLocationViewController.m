@@ -71,8 +71,6 @@
     if(status == kCLAuthorizationStatusAuthorizedWhenInUse){
         self.mapView.showsUserLocation=YES;
         [self.locationManager startUpdatingLocation];
-        self.where=@"San Diego,CA";//this doesn't belong here, just for testing.
-        
     }
 }
 

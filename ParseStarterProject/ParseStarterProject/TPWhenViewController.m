@@ -7,6 +7,8 @@
 //
 
 #import "TPWhenViewController.h"
+#import "Masonry/Masonry.h"
+#import "TPConstants.h"
 
 @interface TPWhenViewController ()
 
@@ -14,9 +16,33 @@
 
 @implementation TPWhenViewController
 
+
+-(id)init{
+    if(self=[super init]){
+        self.datePicker=[[UIDatePicker alloc]init];
+        self.datePicker.datePickerMode=UIDatePickerModeDateAndTime;
+        [self.datePicker addTarget:self action:@selector(userSelectedDate) forControlEvents:UIControlEventValueChanged];
+    }
+    
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.view addSubview:self.datePicker];
+    [self.datePicker mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(self.view.mas_width);
+        make.height.equalTo(@200);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.centerY.equalTo(self.view.mas_centerY);
+    }];
+    
+    [self.view setBackgroundColor:[UIColor grayColor]];
+    [self.datePicker setBackgroundColor:[UIColor greenColor]];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self userSelectedDate];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,6 +50,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)userSelectedDate{
+    [self.delegate TPWhenViewController:self didSelectDate:[self.datePicker date]];
+}
 /*
 #pragma mark - Navigation
 

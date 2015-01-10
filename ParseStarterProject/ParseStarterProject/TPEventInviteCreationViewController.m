@@ -39,6 +39,7 @@
         
         TPWhenViewController* whenViewController=[[TPWhenViewController alloc]init];
         whenViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"When" image:nil selectedImage:nil];
+        whenViewController.delegate=self;
         
         TPWhyViewController* whyViewController=[[TPWhyViewController alloc]init];
         whyViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Why" image:nil selectedImage:nil];
@@ -184,15 +185,10 @@
     NSMutableDictionary* eventDetails=[[NSMutableDictionary alloc]init];
     NSArray* tabBarViewControllers=[self.tabBarController viewControllers];
     
-    //where,when,who,why
-    NSString* where=[(TPLocationViewController*)[tabBarViewControllers objectAtIndex:0]valueForKey:@"where"];
-//    NSString* when;
-//    NSArray* who;
-//    NSString* why=;
     
-    self.event.location=where;
-    self.event.who=@[@"tpfaff2"];
-    self.event.from=[PFUser currentUser].username;
+//    self.event.location=where;
+//    self.event.who=@[@"tpfaff2"];
+//    self.event.from=[PFUser currentUser].username;
     
     if([self inviteIsComplete]){
         return YES;
@@ -225,7 +221,14 @@
     }];
 }
 
+
+#pragma mark - TPLocationViewControllerDelegate
 -(void)TPLocationViewController:(TPLocationViewController *)viewController didSelectLocation:(TPLocation *)location{
     self.event.location=location;
+}
+
+#pragma mark - TPWhenViewControllerDelegate
+-(void)TPWhenViewController:(TPWhenViewController *)viewController didSelectDate:(NSDate *)date{
+    self.event.when=date;
 }
 @end
