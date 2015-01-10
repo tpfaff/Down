@@ -64,9 +64,8 @@
 //    }];
     
     BOOL send=YES;
-    UIBarButtonItem* bbi=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                                      target:self
-                                                                      action:@selector(packageAndSendInvite)
+    
+    UIBarButtonItem* bbi=[[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(showNextViewController)
                           ];
     
     [self.tabBarController tabBarItem].image=[UIImage imageNamed:@"locationIcon"];
@@ -134,7 +133,39 @@
 }
 
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+
+    //[self.tabBarController showViewController:viewController sender:nil];
+
     
+    Class lastViewControllerInTabBar = [TPWhyViewController class];
+    if([viewController isKindOfClass:lastViewControllerInTabBar]){
+        //If it's the last view, show the send button, instead of the next button
+        //Later check for completion of invite maybe first
+        UIBarButtonItem* bbi=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                          target:self
+                                                                          action:@selector(packageAndSendInvite)];
+        
+        [self navigationItem].title=@"Finish";
+        [self navigationItem].rightBarButtonItem=bbi;
+
+    }
+}
+
+-(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    return YES;
+}
+
+-(void)showNextViewController{
+    if(self.tabBarController.selectedIndex < self.tabBarController.viewControllers.count){
+        for (long currentSelectedIndex=0; currentSelectedIndex < self.tabBarController.viewControllers.count; currentSelectedIndex++){
+            if(currentSelectedIndex == self.tabBarController.selectedIndex){
+                long indexOfNextViewController=currentSelectedIndex+1;
+                [self.tabBarController setSelectedIndex:indexOfNextViewController];
+                [self tabBarController:self.tabBarController didSelectViewController:[[self.tabBarController viewControllers]objectAtIndex:indexOfNextViewController]];
+                return;
+            }
+        }
+    }
 }
 
 -(BOOL)packageAndSendInvite{
@@ -191,5 +222,6 @@
         }
     }];
 }
+
 
 @end

@@ -8,11 +8,12 @@
 
 #import "TPEventObject.h"
 
+
 @implementation TPEventObject
 
 -(id)init{
     if(self=[super init]){
-        self.where=[[NSString alloc]init];
+        self.where=[[TPLocation alloc]init];
         self.when=[[NSString alloc]init];
         self.who=[[NSMutableArray alloc]init];
         self.why=[[NSString alloc]init];

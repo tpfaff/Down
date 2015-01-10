@@ -103,7 +103,7 @@
         request.naturalLanguageQuery = searchBar.text;
         request.region = self.mapView.region;
         
-        self.matchingItems = [[NSMutableArray alloc] init];
+        self.searchResults = [[NSMutableArray alloc] init];
         
         MKLocalSearch *search =
         [[MKLocalSearch alloc]initWithRequest:request];
@@ -115,7 +115,7 @@
             else
                 for (MKMapItem *item in response.mapItems)
                 {
-                    [self.matchingItems addObject:item];
+                    [self.searchResults addObject:item];
                     MKPointAnnotation *annotation =
                     [[MKPointAnnotation alloc]init];
                     annotation.coordinate = item.placemark.coordinate;
@@ -124,6 +124,24 @@
                 }
         }];
     }
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    MKAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"loc"];
+    annotationView.canShowCallout = YES;
+    annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    
+    return annotationView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    for(MKPointAnnotation* annotation in self.searchResults){
+        if([self.searchResults indexOfObject:annotation]){
+            
+        }
+    }
+}
 //        [searchBar resignFirstResponder];
 //        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
 //        [geocoder geocodeAddressString:searchBar.text completionHandler:^(NSArray *placemarks, NSError *error) {

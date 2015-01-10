@@ -11,13 +11,14 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "TPMapView.h"
 
 @interface TPLocationViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate>
 @property (strong,nonatomic) MKMapView* mapView;
 @property (strong,nonatomic) CLLocationManager* locationManager;
 @property (strong,nonatomic) NSString* where;
 @property (strong,nonatomic) UISearchBar* searchBar;
-@property (strong,nonatomic) NSMutableArray* matchingItems;
+@property (strong,nonatomic) NSMutableArray* searchResults;
 @end
 
 #endif
