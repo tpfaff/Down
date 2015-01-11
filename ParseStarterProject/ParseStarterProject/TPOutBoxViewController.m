@@ -60,6 +60,7 @@
     }];
 
     TPEventInviteCreationViewController* vc=[[TPEventInviteCreationViewController alloc]init];
+    //vc.hidesBottomBarWhenPushed=YES;
     [[TPUniverse navigationController]pushViewController:vc animated:YES];
 }
 @end

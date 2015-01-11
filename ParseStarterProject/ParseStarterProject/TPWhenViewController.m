@@ -36,8 +36,7 @@
         make.centerY.equalTo(self.view.mas_centerY);
     }];
     
-    [self.view setBackgroundColor:[UIColor grayColor]];
-    [self.datePicker setBackgroundColor:[UIColor greenColor]];
+    [self.view setBackgroundColor:[UIColor lightGrayColor]];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

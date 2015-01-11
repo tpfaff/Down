@@ -28,8 +28,6 @@
         self.imageViewInvitedPeople=[[UIImageView alloc]init];
         self.viewButtonHolder=[[UIView alloc]init];
         self.butttonDown=[[UIButton alloc]init];
-        self.tabBarController=[[UITabBarController alloc]init];
-        self.tabBarController.delegate=self;
         TPLocationViewController* locationViewController=[[TPLocationViewController alloc]init];
         locationViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Where" image:nil selectedImage:nil];
         locationViewController.delegate=self;
@@ -44,7 +42,7 @@
         TPWhyViewController* whyViewController=[[TPWhyViewController alloc]init];
         whyViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Why" image:nil selectedImage:nil];
         
-        [self.tabBarController setViewControllers:@[locationViewController,peopleViewController,whenViewController,whyViewController] animated:YES];
+        [self setViewControllers:@[locationViewController,peopleViewController,whenViewController,whyViewController] animated:YES];
         self.event=[[TPEventObject alloc]init];
         
     }
@@ -53,25 +51,37 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-   // [self addChildViewController:self.tabBarController];
     [self addAllViewsAsSubviews];
+    UIView* nextButtonHolder=[[UIView alloc]init];
+    [nextButtonHolder setBackgroundColor:[UIColor lightGrayColor]];
     
+    UIButton* nextButton=[[UIButton alloc]init];
+    [nextButton setImage:[UIImage imageNamed:@"buttonNext"] forState:UIControlStateNormal];
+    [nextButton addTarget:self action:@selector(showNextViewController) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:nextButtonHolder];
+    [self.view addSubview:nextButton];
+    
+    
+    [nextButtonHolder mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(self.view.mas_width);
+        make.height.equalTo(@75);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+    [nextButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerX.equalTo(nextButtonHolder.mas_centerX);
+        make.centerY.equalTo(nextButtonHolder.mas_centerY);
+        make.height.equalTo(nextButtonHolder.mas_height);
+        make.width.equalTo(nextButtonHolder.mas_height);
+    }];
 
-    
-//    
-//    [self.imageViewLocation mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view.mas_left);
-//        make.right.equalTo(self.view.mas_right);
-//        make.height.equalTo(@);
-//       // make.top.equalTo([TPUniverse navigationController].view.mas_bottom);
-//    }];
     
     BOOL send=YES;
     
     UIBarButtonItem* bbi=[[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(showNextViewController)
                           ];
     
-    [self.tabBarController tabBarItem].image=[UIImage imageNamed:@"locationIcon"];
+    [self tabBarItem].image=[UIImage imageNamed:@"locationIcon"];
     [self navigationItem].title=@"New Invite";
     [self navigationItem].rightBarButtonItem=bbi;
 }
@@ -84,55 +94,14 @@
     [self.view addSubview:self.imageViewInvitedPeople];
     [self.view addSubview:self.imageViewHostPeople];
     [self.view addSubview:self.butttonDown];
-    [self.view addSubview:self.tabBarController.view];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [self.viewButtonHolder mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.and.right.and.bottom.equalTo(self.view);
-//        make.height.equalTo(@90);
-//        [self.viewButtonHolder setBackgroundColor:[UIColor lightGrayColor]];
-//        
-//    }];
-//    
-//    [self.butttonDown setBackgroundImage:[UIImage imageNamed:@"downLogo"] forState:UIControlStateNormal];
-//    
-//    [self.butttonDown mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.view);
-//        make.centerY.equalTo(self.viewButtonHolder);
-//        make.height.equalTo(@80);
-//        make.width.equalTo(@80);
-//    }];
-
-    //154=90+44+20 = button container view height +nagvigation controller height + status bar height
-//    long navigationControllerheight=44;
-//    long statusBarHeight=20;
     long heightOffset=self.viewButtonHolder.frame.size.height+kTPNavigationAndStatusBarHeight;
     
     NSNumber* oneThirdOfRemaingSpace=[[NSNumber alloc]initWithDouble:((self.view.frame.size.height-heightOffset)/3)];
     
-//    [self.imageViewInvitedPeople mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.and.right.equalTo(self.view);
-//        make.bottom.equalTo(self.view.mas_bottom);
-//        make.height.equalTo(oneThirdOfRemaingSpace);
-//        [self.imageViewInvitedPeople setBackgroundColor:[UIColor blueColor]];
-//    }];
-//    
-//    [self.imageViewHostPeople mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.and.right.equalTo(self.view);
-//        make.bottom.equalTo(self.imageViewInvitedPeople.mas_top);
-//        make.height.equalTo(oneThirdOfRemaingSpace);
-//        [self.imageViewHostPeople setBackgroundColor:[UIColor greenColor]];
-//    }];
-//   
-//    [self.imageViewLocation mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.and.right.equalTo(self.view);
-//        make.bottom.equalTo(self.imageViewHostPeople.mas_top);
-//        make.height.equalTo(oneThirdOfRemaingSpace);
-//        [self.imageViewLocation setBackgroundColor:[UIColor lightGrayColor]];
-//        [self.imageViewLocation setImage:[UIImage imageNamed:@"locationIcon"]];
-//    }];
 }
 
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
@@ -159,17 +128,22 @@
 }
 
 -(void)showNextViewController{
-    if(self.tabBarController.selectedIndex < self.tabBarController.viewControllers.count){
-        for (long currentSelectedIndex=0; currentSelectedIndex < self.tabBarController.viewControllers.count; currentSelectedIndex++){
-            if(currentSelectedIndex == self.tabBarController.selectedIndex){
+    if(self.selectedIndex < self.viewControllers.count){
+        for (long currentSelectedIndex=0; currentSelectedIndex < self.viewControllers.count; currentSelectedIndex++){
+            if(currentSelectedIndex == self.selectedIndex){
                 long indexOfNextViewController=currentSelectedIndex+1;
-                [self.tabBarController setSelectedIndex:indexOfNextViewController];
-                [self tabBarController:self.tabBarController didSelectViewController:[[self.tabBarController viewControllers]objectAtIndex:indexOfNextViewController]];
+                [self setSelectedIndex:indexOfNextViewController];
+                [self tabBarController:self didSelectViewController:[[self viewControllers]objectAtIndex:indexOfNextViewController]];
                 return;
             }
         }
     }
 }
+
+- (BOOL)hidesBottomBarWhenPushed {
+    return YES;
+}
+
 
 -(BOOL)packageAndSendInvite{
     BOOL success=[self packageInvite];
@@ -183,7 +157,7 @@
 -(BOOL)packageInvite{
     //Build our event object with data from our tabbar view controllers
     NSMutableDictionary* eventDetails=[[NSMutableDictionary alloc]init];
-    NSArray* tabBarViewControllers=[self.tabBarController viewControllers];
+    NSArray* tabBarViewControllers=[self viewControllers];
     
     
 //    self.event.location=where;
