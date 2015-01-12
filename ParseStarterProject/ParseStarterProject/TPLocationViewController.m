@@ -76,17 +76,17 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
   //  [self zoomToUserLocation:[locations objectAtIndex:0]];
-    [self zoomToUserLocation:self.mapView.userLocation];
+    [self zoomToLocation:self.mapView.userLocation.location];
     //self.where=self.mapView.userLocation.description;
 }
 
-- (void)zoomToUserLocation:(MKUserLocation *)userLocation
+- (void)zoomToLocation:(CLLocation *)location
     {
-        if (!userLocation)
+        if (!location)
             return;
         
         MKCoordinateRegion region;
-        region.center = userLocation.location.coordinate;
+        region.center = location.coordinate;
         region.span = MKCoordinateSpanMake(2.0, 2.0); //Zoom distance
         region = [self.mapView regionThatFits:region];
         [self.mapView setRegion:region animated:YES];
@@ -94,7 +94,7 @@
     }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    
+    [searchBar resignFirstResponder];
         [self.mapView removeAnnotations:self.mapView.annotations];
         MKLocalSearchRequest *request =
         [[MKLocalSearchRequest alloc] init];
@@ -110,9 +110,14 @@
                                              *response, NSError *error) {
             if (response.mapItems.count == 0)
                 NSLog(@"No Matches");
-            else
+            else{
+                
+                MKMapItem* firstResult;
                 for (MKMapItem *item in response.mapItems)
                 {
+                    if(!firstResult){
+                        firstResult=item;
+                    }
                     [self.searchResults addObject:item];
                     MKPointAnnotation *annotation =
                     [[MKPointAnnotation alloc]init];
@@ -120,7 +125,11 @@
                     annotation.title = item.name;
                     [self.mapView addAnnotation:annotation];
                 }
+            
+            [self zoomToLocation:firstResult.placemark.location];
+            }
         }];
+    
     }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -150,25 +159,10 @@
         }
     }
 }
-//        [searchBar resignFirstResponder];
-//        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-//        [geocoder geocodeAddressString:searchBar.text completionHandler:^(NSArray *placemarks, NSError *error) {
-//            //Error checking
-//            
-//            CLPlacemark *placemark = [placemarks objectAtIndex:0];
-//            MKCoordinateRegion region;
-//            region.center.latitude = placemark.region.center.latitude;
-//            region.center.longitude = placemark.region.center.longitude;
-//            MKCoordinateSpan span;
-//            double radius = placemark.region.radius / 1000; // convert to km
-//            
-//            NSLog(@"[searchBarSearchButtonClicked] Radius is %f", radius);
-//            span.latitudeDelta = radius / 112.0;
-//            
-//            region.span = span;
-//            
-//            [self.mapView setRegion:region animated:YES];
-//        }];
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.searchBar resignFirstResponder];
+}
 
 @end

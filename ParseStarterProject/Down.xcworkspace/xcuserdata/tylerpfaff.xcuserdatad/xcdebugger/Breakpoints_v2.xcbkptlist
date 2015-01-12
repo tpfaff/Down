@@ -56,27 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/TPEventInviteCreationViewController.m"
-            timestampString = "442709492.145968"
+            timestampString = "442738517.846616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "-TPLocationViewController:didSelectLocation:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/TPEventInviteCreationViewController.m"
-            timestampString = "442709492.145968"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "-TPWhenViewController:didSelectDate:"
             landmarkType = "5">
          </BreakpointContent>
@@ -94,6 +78,22 @@
             startingLineNumber = "28"
             endingLineNumber = "28"
             landmarkName = "-hidesBottomBarWhenPushed"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/TPEventInviteCreationViewController.m"
+            timestampString = "442738517.846616"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-showNextViewController"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

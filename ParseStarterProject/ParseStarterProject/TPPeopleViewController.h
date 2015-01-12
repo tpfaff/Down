@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TPPeopleViewController : UITableViewController
-
+@property (strong,nonatomic) NSArray* friends;
 @end

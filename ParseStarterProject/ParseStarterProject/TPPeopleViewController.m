@@ -7,6 +7,7 @@
 //
 
 #import "TPPeopleViewController.h"
+#import "TPConstants.h"
 
 @interface TPPeopleViewController ()
 
@@ -17,21 +18,57 @@
 
 -(id)init{
     if(self=[super init]){
-        
+        self.tableView.dataSource=self;
+        self.tableView.delegate=self;
+        self.tableView.separatorStyle=UITableViewCellSeparatorStyleSingleLine;
     }
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor redColor]];
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+  //e  [self.view setFrame:CGRectMake(0, kTPNavigationAndStatusBarHeight, self.view.frame.size.width, self.view.frame.size.height-kTPNavigationAndStatusBarHeight)];
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"friendCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (!cell)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];
+    
+    switch(indexPath.section){
+        case 0:
+            //[cell setBackgroundColor:[UIColor blueColor]];
+            [cell.imageView setImage:[UIImage imageNamed:@"mockPerson"]];
+            [cell.textLabel setText:@"Penelope"];
+            break;
+        case 1:
+            [cell setBackgroundColor:[UIColor grayColor]];
+            break;
+        case 2:
+            [cell setBackgroundColor:[UIColor purpleColor]];
+            break;
+    }
+    return cell;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;
+}
 /*
 #pragma mark - Navigation
 

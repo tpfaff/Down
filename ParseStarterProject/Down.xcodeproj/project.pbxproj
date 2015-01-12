@@ -43,6 +43,7 @@
 		D54066121A5A567C007A28EF /* TPWhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D54066111A5A567C007A28EF /* TPWhyViewController.m */; };
 		D569110F1A50D49900AB45F9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D569110E1A50D49900AB45F9 /* MapKit.framework */; };
 		D5B783001A60F58F009D8757 /* TPLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B782FF1A60F58F009D8757 /* TPLocation.m */; };
+		D5B783071A634ACB009D8757 /* TPPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B783061A634ACB009D8757 /* TPPeopleTableViewCell.m */; };
 		D5E5C87E1A491E0E00E22912 /* TPUniverse.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E5C87D1A491E0E00E22912 /* TPUniverse.m */; };
 		D5E5C8841A4C102200E22912 /* TPEventInviteCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E5C8831A4C102200E22912 /* TPEventInviteCreationViewController.m */; };
 		D5F3DE3A1A39857A00C0A5A6 /* TPOutBoxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F3DE391A39857A00C0A5A6 /* TPOutBoxViewController.xib */; };
@@ -108,6 +109,8 @@
 		D569110E1A50D49900AB45F9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D5B782FE1A60F58F009D8757 /* TPLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPLocation.h; sourceTree = "<group>"; };
 		D5B782FF1A60F58F009D8757 /* TPLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPLocation.m; sourceTree = "<group>"; };
+		D5B783051A634ACB009D8757 /* TPPeopleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPeopleTableViewCell.h; sourceTree = "<group>"; };
+		D5B783061A634ACB009D8757 /* TPPeopleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPeopleTableViewCell.m; sourceTree = "<group>"; };
 		D5E5C87D1A491E0E00E22912 /* TPUniverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPUniverse.m; sourceTree = "<group>"; };
 		D5E5C87F1A491E4500E22912 /* TPUniverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPUniverse.h; sourceTree = "<group>"; };
 		D5E5C8831A4C102200E22912 /* TPEventInviteCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPEventInviteCreationViewController.m; sourceTree = "<group>"; };
@@ -259,6 +262,8 @@
 				D540660A1A57B0B5007A28EF /* TPEventObject.m */,
 				D5B782FE1A60F58F009D8757 /* TPLocation.h */,
 				D5B782FF1A60F58F009D8757 /* TPLocation.m */,
+				D5B783051A634ACB009D8757 /* TPPeopleTableViewCell.h */,
+				D5B783061A634ACB009D8757 /* TPPeopleTableViewCell.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				09ABC08813A1D52E009C3FCF /* TPRootViewController.m in Sources */,
 				D526EF161A3309DF00861D2C /* TPSplashScreenViewController.m in Sources */,
 				D5E5C87E1A491E0E00E22912 /* TPUniverse.m in Sources */,
+				D5B783071A634ACB009D8757 /* TPPeopleTableViewCell.m in Sources */,
 				D526EF431A33C04700861D2C /* TPMailBoxViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
