@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TPAddFriendsTableViewController : UITableViewController
-
+@interface TPAddFriendsTableViewController : UITableViewController <UISearchBarDelegate>
+@property (strong,nonatomic) UISearchBar* searchBar;
 @end

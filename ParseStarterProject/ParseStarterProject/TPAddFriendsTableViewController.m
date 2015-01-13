@@ -7,23 +7,48 @@
 //
 
 #import "TPAddFriendsTableViewController.h"
+#import "TPConstants.h"
+#import <Parse/Parse.h>
+#import <Masonry/Masonry.h>
 
 @interface TPAddFriendsTableViewController ()
-
 @end
 
 @implementation TPAddFriendsTableViewController
 
+NSString* nameQuery;
+NSArray* dataSource;
+static NSString* reuseIdentifier;
+
+-(id)init{
+    if(self=[super init]){
+        self.searchBar=[[UISearchBar alloc]init];
+        self.searchBar.delegate=self;
+        reuseIdentifier=@"friendCell";
+        
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.searchBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+    self.tableView.tableHeaderView=self.searchBar;
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    [self.view mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.searchBar).with.offset(self.searchBar.mas_height);
+//    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -34,24 +59,25 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return dataSource.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if(!cell){
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    }
+    cell.textLabel.text=[[dataSource objectAtIndex:indexPath.row]objectForKey:kTPUserName];
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -96,5 +122,30 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)searchForName:(NSString*)name{
+    PFQuery* query=[[PFQuery alloc]initWithClassName:@"_User"];
+    
+    // !!!: This search is slow for large datasets
+    [query whereKey:kTPUserName containsString:name];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(objects.count>0){
+            [self updateTableAfterSearchWithResults:objects];
+        }
+    }];
+}
+
+-(void)updateTableAfterSearchWithResults:(NSArray*)results{
+    dataSource=results;
+    [self.tableView reloadData];
+}
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    [self searchForName:searchText];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    dataSource=nil;
+}
 
 @end

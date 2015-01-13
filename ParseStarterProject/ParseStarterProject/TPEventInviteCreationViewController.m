@@ -17,6 +17,7 @@
 #import "TPWhyViewController.h"
 #import "Masonry.h"
 #import "TPConstants.h"
+#import "TPAddFriendsTableViewController.h"
 
 @implementation TPEventInviteCreationViewController
 
@@ -58,11 +59,9 @@
 
 
 -(void)addAllViewsAsSubviews{
-    [self.view addSubview:self.viewButtonHolder];
     [self.view addSubview:self.imageViewLocation];
     [self.view addSubview:self.imageViewInvitedPeople];
     [self.view addSubview:self.imageViewHostPeople];
-    [self.view addSubview:self.butttonDown];
     
 }
 
@@ -75,22 +74,22 @@
     UIButton* nextButton=[[UIButton alloc]init];
     [nextButton setImage:[UIImage imageNamed:@"buttonNext"] forState:UIControlStateNormal];
     [nextButton addTarget:self action:@selector(showNextViewController) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:nextButtonHolder];
-    [self.view addSubview:nextButton];
-    
-    
-    [nextButtonHolder mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.view.mas_width);
-        make.height.equalTo(@75);
-        make.bottom.equalTo(self.view.mas_bottom);
-    }];
-    [nextButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.centerX.equalTo(nextButtonHolder.mas_centerX);
-        make.centerY.equalTo(nextButtonHolder.mas_centerY);
-        make.height.equalTo(nextButtonHolder.mas_height);
-        make.width.equalTo(nextButtonHolder.mas_height);
-    }];
+//    [self.view addSubview:nextButtonHolder];
+//    [self.view addSubview:nextButton];
+//    
+//    
+//    [nextButtonHolder mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.equalTo(self.view.mas_width);
+//        make.height.equalTo(@75);
+//        make.bottom.equalTo(self.view.mas_bottom);
+//    }];
+//    [nextButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        
+//        make.centerX.equalTo(nextButtonHolder.mas_centerX);
+//        make.centerY.equalTo(nextButtonHolder.mas_centerY);
+//        make.height.equalTo(nextButtonHolder.mas_height);
+//        make.width.equalTo(nextButtonHolder.mas_height);
+//    }];
     
     
     BOOL send=YES;
@@ -111,6 +110,13 @@
 
     
     Class lastViewControllerInTabBar = [TPWhyViewController class];
+    Class peopleViewController= [TPPeopleViewController class];
+    
+    if([viewController isKindOfClass:peopleViewController]){
+        UIBarButtonItem* bbi=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddFriendViewController)];
+        [self navigationItem].rightBarButtonItem=bbi;
+    }
+    
     if([viewController isKindOfClass:lastViewControllerInTabBar]){
         //If it's the last view, show the send button, instead of the next button
         //Later check for completion of invite maybe first
@@ -198,6 +204,10 @@
     }];
 }
 
+-(void)showAddFriendViewController{
+    TPAddFriendsTableViewController* vc=[[TPAddFriendsTableViewController alloc]init];
+    [self.navigationController showViewController:vc sender:nil];
+}
 
 #pragma mark - TPLocationViewControllerDelegate
 -(void)TPLocationViewController:(TPLocationViewController *)viewController didSelectLocation:(TPLocation *)location{
