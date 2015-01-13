@@ -28,9 +28,10 @@
         self.imageViewInvitedPeople=[[UIImageView alloc]init];
         self.viewButtonHolder=[[UIView alloc]init];
         self.butttonDown=[[UIButton alloc]init];
-        TPLocationViewController* locationViewController=[[TPLocationViewController alloc]init];
-        locationViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Where" image:nil selectedImage:nil];
-        locationViewController.delegate=self;
+        
+        self.locationViewController=[[TPLocationViewController alloc]init];
+        self.locationViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Where" image:nil selectedImage:nil];
+        self.locationViewController.delegate=self;
         
         TPPeopleViewController* peopleViewController=[[TPPeopleViewController alloc]init];
         peopleViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Who" image:nil selectedImage:nil];
@@ -42,15 +43,31 @@
         TPWhyViewController* whyViewController=[[TPWhyViewController alloc]init];
         whyViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Why" image:nil selectedImage:nil];
         
-        [self setViewControllers:@[locationViewController,peopleViewController,whenViewController,whyViewController] animated:YES];
+        [self setViewControllers:@[self.locationViewController,peopleViewController,whenViewController,whyViewController] animated:YES];
+      //  [[TPUniverse navigationController]setViewControllers:@[self.locationViewController,peopleViewController,whenViewController,whyViewController]];
         self.event=[[TPEventObject alloc]init];
-        
     }
     return self;
 }
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+   // [self.navigationController pushViewController:self.locationViewController animated:YES];
+    }
+
+
+
+-(void)addAllViewsAsSubviews{
+    [self.view addSubview:self.viewButtonHolder];
+    [self.view addSubview:self.imageViewLocation];
+    [self.view addSubview:self.imageViewInvitedPeople];
+    [self.view addSubview:self.imageViewHostPeople];
+    [self.view addSubview:self.butttonDown];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self addAllViewsAsSubviews];
     UIView* nextButtonHolder=[[UIView alloc]init];
     [nextButtonHolder setBackgroundColor:[UIColor lightGrayColor]];
@@ -74,7 +91,7 @@
         make.height.equalTo(nextButtonHolder.mas_height);
         make.width.equalTo(nextButtonHolder.mas_height);
     }];
-
+    
     
     BOOL send=YES;
     
@@ -84,23 +101,7 @@
     [self tabBarItem].image=[UIImage imageNamed:@"locationIcon"];
     [self navigationItem].title=@"New Invite";
     [self navigationItem].rightBarButtonItem=bbi;
-}
 
-
-
--(void)addAllViewsAsSubviews{
-    [self.view addSubview:self.viewButtonHolder];
-    [self.view addSubview:self.imageViewLocation];
-    [self.view addSubview:self.imageViewInvitedPeople];
-    [self.view addSubview:self.imageViewHostPeople];
-    [self.view addSubview:self.butttonDown];
-    
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    long heightOffset=self.viewButtonHolder.frame.size.height+kTPNavigationAndStatusBarHeight;
-    
-    NSNumber* oneThirdOfRemaingSpace=[[NSNumber alloc]initWithDouble:((self.view.frame.size.height-heightOffset)/3)];
     
 }
 
@@ -133,6 +134,8 @@
             if(currentSelectedIndex == self.selectedIndex){
                 long indexOfNextViewController=currentSelectedIndex+1;
                 [self setSelectedIndex:indexOfNextViewController];
+//                [self.navigationController pushViewController:[[self viewControllers]objectAtIndex:indexOfNextViewController]] animated:YES];
+                //[[TPUniverse navigationController]pushViewController:[[self viewControllers]objectAtIndex:indexOfNextViewController] animated:YES];
                 [self tabBarController:self didSelectViewController:[[self viewControllers]objectAtIndex:indexOfNextViewController]];
                 return;
             }
