@@ -14,5 +14,6 @@
 #define kTPEventInviteList      @"Invited"
 #define kTPEventFrom            @"From"
 #define kTPUserName             @"username"
+#define kTPProfileImage         @"profileImage"
 #define kTPNavigationAndStatusBarHeight 64
 #endif

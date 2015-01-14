@@ -19,13 +19,29 @@
 NSString* nameQuery;
 NSArray* dataSource;
 static NSString* reuseIdentifier;
+NSMutableArray* cellStates;
+PFQuery* friendQuery;
 
--(id)init{
-    if(self=[super init]){
+-(id)initWithClassName:(NSString *)className{
+//    textKey property
+//    imageKey property
+//    placeholderImage property
+//    loadingViewEnabled property
+//    pullToRefreshEnabled property
+//    paginationEnabled property
+//    objectsPerPage property
+//    loading property
+    if(self=[super initWithClassName:className]){
         self.searchBar=[[UISearchBar alloc]init];
         self.searchBar.delegate=self;
+        self.textKey=kTPUserName;
+        self.imageKey=kTPProfileImage;
+        self.loadingViewEnabled=NO;
+        self.pullToRefreshEnabled=YES;
+        self.objectsPerPage=10;
+        self.loading=NO;
         reuseIdentifier=@"friendCell";
-        
+        cellStates=[[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -65,20 +81,43 @@ static NSString* reuseIdentifier;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return dataSource.count;
+    return self.objects.count;
 }
 
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+//    if(!cell){
+//        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+//    }
+//    if([cellStates objectAtIndex:indexPath.row]){
+//        cell.accessoryType=UITableViewCellAccessoryCheckmark;
+//    }else{
+//        cell.accessoryType=UITableViewCellAccessoryNone;
+//    }
+//    cell.textLabel.text=[[dataSource objectAtIndex:indexPath.row]objectForKey:kTPUserName];
+//    return cell;
+//}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if(!cell){
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
-    }
-    cell.textLabel.text=[[dataSource objectAtIndex:indexPath.row]objectForKey:kTPUserName];
-    return cell;
+
+//-(PFTableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object{
+//       PFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+//    if(!cell){
+//               cell=[[PFTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+//            }
+//    cell.textLabel.text=[object valueForKey:kTPUserName];
+//    PFFile* file=[object valueForKey:kTPProfileImage];
+//    if([object valueForKey:kTPProfileImage]){
+//    cell.imageView.image=[object valueForKey:kTPProfileImage];
+//    }
+//    return cell;
+//}
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+        
 }
 
-
+-(PFQuery *)queryForTable{
+    return friendQuery;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -123,17 +162,23 @@ static NSString* reuseIdentifier;
 }
 */
 
--(void)searchForName:(NSString*)name{
-    PFQuery* query=[[PFQuery alloc]initWithClassName:@"_User"];
-    
+//-(void)objectsDidLoad:(NSError *)error{
+//    //dataSource=self.objects;
+//   // [self.tableView reloadData];
+//    [super objectsDidLoad:error];
+//    NSLog(@"%@",error);
+//}
+
+-(void)queryForFriends{
+   // friendQuery=[[PFQuery alloc]initWithClassName:@"_User"];
+    [self loadObjects];
     // !!!: This search is slow for large datasets
-    [query whereKey:kTPUserName containsString:name];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if(objects.count>0){
-            [self updateTableAfterSearchWithResults:objects];
-        }
-    }];
+//    [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if(objects.count>0){
+//            [self updateTableAfterSearchWithResults:objects];
+//        }
+//    }];
 }
 
 -(void)updateTableAfterSearchWithResults:(NSArray*)results{
@@ -141,7 +186,14 @@ static NSString* reuseIdentifier;
     [self.tableView reloadData];
 }
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    [self searchForName:searchText];
+    if(!friendQuery){
+        friendQuery=[[PFQuery alloc]initWithClassName:self.parseClassName];
+    }else{
+        [friendQuery cancel];
+    }
+    [friendQuery whereKey:kTPUserName containsString:searchText];
+    
+    [self loadObjects];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

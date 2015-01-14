@@ -205,7 +205,7 @@
 }
 
 -(void)showAddFriendViewController{
-    TPAddFriendsTableViewController* vc=[[TPAddFriendsTableViewController alloc]init];
+    TPAddFriendsTableViewController* vc=[[TPAddFriendsTableViewController alloc]initWithClassName:@"_User"];
     [self.navigationController showViewController:vc sender:nil];
 }
 

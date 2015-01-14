@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TPAddFriendsTableViewController : UITableViewController <UISearchBarDelegate>
+#import <ParseUI/ParseUI.h>
+@interface TPAddFriendsTableViewController : PFQueryTableViewController <UISearchBarDelegate>
 @property (strong,nonatomic) UISearchBar* searchBar;
 @end

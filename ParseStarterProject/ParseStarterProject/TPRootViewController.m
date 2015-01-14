@@ -97,11 +97,19 @@
 
 -(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
  
-    //[self popViewControllerAnimated:YES];z
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        NSLog(@"dismissed view controller");
-//    //    [self pushSplashScreenViewController];
-//    }];
+
+    if(![user valueForKey:@"profileImage"]){
+        UIImage* defaultProfileImage=[UIImage imageNamed:@"defaultProfileImage"];
+        
+        NSData *imageData = UIImagePNGRepresentation(defaultProfileImage);
+        PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+        [user setObject:imageFile forKey:@"profileImage"];
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(error){
+                NSLog(@"Failed to save default profile pic with error %@",error);
+            }
+        }];
+    }
     [[TPUniverse navigationController]popViewControllerAnimated:NO];
     //[self presentMailBoxViewController];
 }
