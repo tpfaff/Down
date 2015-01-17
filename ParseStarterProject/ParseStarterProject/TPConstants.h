@@ -15,4 +15,5 @@
 #define kTPEventFrom            @"From"
 #define kTPUserName             @"username"
 #define kTPNavigationAndStatusBarHeight 64
+#define kTPFriendsList          @"friends"
 #endif
