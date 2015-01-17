@@ -8,9 +8,11 @@
 
 #import "TPPeopleViewController.h"
 #import "TPConstants.h"
+#import <Parse/Parse.h>
+#import "Masonry/Masonry.h"
 
 @interface TPPeopleViewController ()
-
+@property (strong,nonatomic) NSArray* friendsList;
 @end
 
 @implementation TPPeopleViewController
@@ -26,13 +28,33 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self.view mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo([self navigationController].view.mas_bottom);
+//    }];
+    
+    //This makes it so the nav bar doesn't cover up the top of the table view.
+//    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+    // self.navigationItem.title=@"Friends";
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self getFriendsList];
   //e  [self.view setFrame:CGRectMake(0, kTPNavigationAndStatusBarHeight, self.view.frame.size.width, self.view.frame.size.height-kTPNavigationAndStatusBarHeight)];
 
 }
+
+- (void) viewDidLayoutSubviews {
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        CGRect viewBounds = self.view.bounds;
+        CGFloat topBarOffset = self.topLayoutGuide.length;
+        viewBounds.origin.y = topBarOffset * -1;
+        self.view.bounds = viewBounds;
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -45,28 +67,23 @@
     if (!cell)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];
     
-    switch(indexPath.section){
-        case 0:
-            //[cell setBackgroundColor:[UIColor blueColor]];
-            [cell.imageView setImage:[UIImage imageNamed:@"mockPerson"]];
-            [cell.textLabel setText:@"Penelope"];
-            break;
-        case 1:
-            [cell setBackgroundColor:[UIColor grayColor]];
-            break;
-        case 2:
-            [cell setBackgroundColor:[UIColor purpleColor]];
-            break;
-    }
+    cell.textLabel.text=[self.friendsList objectAtIndex:indexPath.row];
+    
     return cell;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.friendsList.count;
+}
+
+-(void)getFriendsList{
+    self.friendsList=[[PFUser currentUser]objectForKey:kTPFriendsList];
+    [self.tableView reloadData];
+    
 }
 /*
 #pragma mark - Navigation

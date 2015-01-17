@@ -45,6 +45,7 @@
 		D5B783001A60F58F009D8757 /* TPLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B782FF1A60F58F009D8757 /* TPLocation.m */; };
 		D5B783071A634ACB009D8757 /* TPPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B783061A634ACB009D8757 /* TPPeopleTableViewCell.m */; };
 		D5B7830C1A65047D009D8757 /* TPAddFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B7830B1A65047D009D8757 /* TPAddFriendsTableViewController.m */; };
+		D5C8C0BF1A6A5C2200AA63C7 /* libPods-Down-Masonry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C8C0BE1A6A5C2200AA63C7 /* libPods-Down-Masonry.a */; };
 		D5E5C87E1A491E0E00E22912 /* TPUniverse.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E5C87D1A491E0E00E22912 /* TPUniverse.m */; };
 		D5E5C8841A4C102200E22912 /* TPEventInviteCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E5C8831A4C102200E22912 /* TPEventInviteCreationViewController.m */; };
 		D5F3DE3A1A39857A00C0A5A6 /* TPOutBoxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F3DE391A39857A00C0A5A6 /* TPOutBoxViewController.xib */; };
@@ -114,6 +115,7 @@
 		D5B783061A634ACB009D8757 /* TPPeopleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPeopleTableViewCell.m; sourceTree = "<group>"; };
 		D5B7830A1A65047D009D8757 /* TPAddFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAddFriendsTableViewController.h; sourceTree = "<group>"; };
 		D5B7830B1A65047D009D8757 /* TPAddFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAddFriendsTableViewController.m; sourceTree = "<group>"; };
+		D5C8C0BE1A6A5C2200AA63C7 /* libPods-Down-Masonry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Down-Masonry.a"; path = "Pods/build/Debug-iphoneos/libPods-Down-Masonry.a"; sourceTree = "<group>"; };
 		D5E5C87D1A491E0E00E22912 /* TPUniverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPUniverse.m; sourceTree = "<group>"; };
 		D5E5C87F1A491E4500E22912 /* TPUniverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPUniverse.h; sourceTree = "<group>"; };
 		D5E5C8831A4C102200E22912 /* TPEventInviteCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPEventInviteCreationViewController.m; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5C8C0BF1A6A5C2200AA63C7 /* libPods-Down-Masonry.a in Frameworks */,
 				DD952FCB16E7F5CF00470144 /* CoreLocation.framework in Frameworks */,
 				4998650515BF305000803E05 /* StoreKit.framework in Frameworks */,
 				743D7B6D157DA60100084B67 /* CoreGraphics.framework in Frameworks */,
@@ -179,6 +182,7 @@
 		09ABC07013A1D52D009C3FCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D5C8C0BE1A6A5C2200AA63C7 /* libPods-Down-Masonry.a */,
 				D569110E1A50D49900AB45F9 /* MapKit.framework */,
 				6372FF571613CC47002132AF /* AdSupport.framework */,
 				6372FF551613CC42002132AF /* Social.framework */,
@@ -502,6 +506,10 @@
 				GCC_PREFIX_HEADER = "ParseStarterProject/Down-Prefix.pch";
 				INFOPLIST_FILE = "ParseStarterProject/Down-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = Down;
 				PROVISIONING_PROFILE = "1ae6c806-c8d9-4ba3-b5a9-3870d755833a";
 				WRAPPER_EXTENSION = app;
@@ -526,6 +534,10 @@
 				GCC_PREFIX_HEADER = "ParseStarterProject/Down-Prefix.pch";
 				INFOPLIST_FILE = "ParseStarterProject/Down-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = Down;
 				PROVISIONING_PROFILE = "1ae6c806-c8d9-4ba3-b5a9-3870d755833a";
 				VALIDATE_PRODUCT = YES;
