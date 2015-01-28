@@ -13,6 +13,8 @@
 #define kTPEventLocation        @"Location"
 #define kTPEventInviteList      @"Invited"
 #define kTPEventFrom            @"From"
+#define kTPEventMessage         @"Message"
+
 #define kTPUserName             @"username"
 #define kTPNavigationAndStatusBarHeight 64
 #define kTPFriendsList          @"friends"

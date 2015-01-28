@@ -9,11 +9,12 @@
 #import "TPEventObject.h"
 #import "TPLocationViewController.h"
 #import "TPWhenViewController.h"
+#import "TPWhyViewController.h"
 
 #ifndef ParseStarterProject_TPEventInviteCreationViewController_h
 #define ParseStarterProject_TPEventInviteCreationViewController_h
 
-@interface TPEventInviteCreationViewController : UITabBarController <UITabBarControllerDelegate,TPLocationViewControllerDelegate,TPWhenViewControllerDelegate>
+@interface TPEventInviteCreationViewController : UITabBarController <UITabBarControllerDelegate,TPLocationViewControllerDelegate,TPWhenViewControllerDelegate,TPWhyViewControllerDelegate>
 @property (strong,nonatomic) UIImageView* imageViewLocation;
 @property (strong,nonatomic) UIImageView* imageViewHostPeople;
 @property (strong,nonatomic) UIImageView* imageViewInvitedPeople;

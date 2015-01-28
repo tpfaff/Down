@@ -43,8 +43,9 @@
         
         TPWhyViewController* whyViewController=[[TPWhyViewController alloc]init];
         whyViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Why" image:nil selectedImage:nil];
+        whyViewController.delegate=self;
         
-        [self setViewControllers:@[self.locationViewController,peopleViewController,whenViewController,whyViewController] animated:YES];
+        [self setViewControllers:@[self.locationViewController,whenViewController,whyViewController,peopleViewController] animated:YES];
       //  [[TPUniverse navigationController]setViewControllers:@[self.locationViewController,peopleViewController,whenViewController,whyViewController]];
         self.event=[[TPEventObject alloc]init];
     }
@@ -109,7 +110,7 @@
     //[self.tabBarController showViewController:viewController sender:nil];
 
     
-    Class lastViewControllerInTabBar = [TPWhyViewController class];
+    Class lastViewControllerInTabBar = [[[tabBarController viewControllers]lastObject]class];
     Class peopleViewController= [TPPeopleViewController class];
     
     if([viewController isKindOfClass:peopleViewController]){
@@ -165,19 +166,20 @@
 
 -(BOOL)packageInvite{
     //Build our event object with data from our tabbar view controllers
-    NSMutableDictionary* eventDetails=[[NSMutableDictionary alloc]init];
-    NSArray* tabBarViewControllers=[self viewControllers];
-    
-    
-//    self.event.location=where;
-//    self.event.who=@[@"tpfaff2"];
-//    self.event.from=[PFUser currentUser].username;
-    
-    if([self inviteIsComplete]){
-        return YES;
-    }else{
-        return NO;
-    }
+//    NSMutableDictionary* eventDetails=[[NSMutableDictionary alloc]init];
+//    NSArray* tabBarViewControllers=[self viewControllers];
+//    
+//    
+////    self.event.location=where;
+////    self.event.who=@[@"tpfaff2"];
+////    self.event.from=[PFUser currentUser].username;
+//    
+//    if([self inviteIsComplete]){
+//        return YES;
+//    }else{
+//        return NO;
+//    }
+    return YES;
 }
 
 -(BOOL)inviteIsComplete{
@@ -193,6 +195,7 @@
     [eventInvitation setObject:self.event.location forKey:kTPEventLocation];
     [eventInvitation setObject:self.event.who forKey:kTPEventInviteList];
     [eventInvitation setObject:self.event.from forKey:kTPEventFrom];
+    [eventInvitation setObject:self.event.why forKey:kTPEventMessage];
     
     
     [eventInvitation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -217,5 +220,11 @@
 #pragma mark - TPWhenViewControllerDelegate
 -(void)TPWhenViewController:(TPWhenViewController *)viewController didSelectDate:(NSDate *)date{
     self.event.when=date;
+}
+
+#pragma mark -TPWhyViewControllerDeleage
+
+-(void)TPWhyViewController:(TPWhyViewController *)viewController textWasEntered:(NSString *)text{
+    self.event.why=text;
 }
 @end
