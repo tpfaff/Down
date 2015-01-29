@@ -13,5 +13,6 @@
 @property (strong,nonatomic) NSString* phoneNumber;
 @property (strong,nonatomic) NSString* address;
 @property (strong,nonatomic) NSURL* url;
-@property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic) CLLocationDegrees latitude;
+@property (nonatomic) CLLocationDegrees longitude;
 @end

@@ -192,10 +192,20 @@
 
 -(BOOL)sendInvite{
     PFObject* eventInvitation=[PFObject objectWithClassName:kTPEvent];
-    [eventInvitation setObject:self.event.location forKey:kTPEventLocation];
+    PFObject* location=[PFObject objectWithClassName:kTPEventLocation];
+    [location setObject:self.event.location.name forKey:kTPLocationName];
+    NSNumber* longitude=[NSNumber numberWithDouble:self.event.location.longitude];
+    NSNumber* lattitude=[NSNumber numberWithDouble:self.event.location.latitude];
+    
+    [location setObject:lattitude forKey:kTPLocationLatitude];
+    [location setObject:longitude forKey:kTPLocationLongitude];
+    
+    
+    //[eventInvitation setObject:self.event.location forKey:kTPEventLocation];
     [eventInvitation setObject:self.event.who forKey:kTPEventInviteList];
     [eventInvitation setObject:self.event.from forKey:kTPEventFrom];
     [eventInvitation setObject:self.event.why forKey:kTPEventMessage];
+    [eventInvitation setObject:location forKey:kTPEventLocation];
     
     
     [eventInvitation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

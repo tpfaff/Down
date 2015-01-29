@@ -10,10 +10,17 @@
 #define Down_TPConstants_h
 
 #define kTPEvent                @"Event"
+
 #define kTPEventLocation        @"Location"
+#define kTPLocationAddress      @"Address"
+#define kTPLocationName         @"Name"
+#define kTPLocationLatitude    @"Latitude"
+#define kTPLocationLongitude    @"Longitude"
+
 #define kTPEventInviteList      @"Invited"
 #define kTPEventFrom            @"From"
 #define kTPEventMessage         @"Message"
+
 
 #define kTPUserName             @"username"
 #define kTPNavigationAndStatusBarHeight 64

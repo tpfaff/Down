@@ -148,14 +148,23 @@
 //    for(MKMapItem* item in self.mapView.selectedAnnotations){
 //        
 //    }
+    
+    MKPointAnnotation* selectedAnnotation=[[mapView selectedAnnotations]objectAtIndex:0];
     for(MKMapItem* item in self.searchResults){
-        if([item.name isEqualToString:[[[mapView selectedAnnotations]objectAtIndex:0] title]]){
+        if(item.placemark.coordinate.latitude == selectedAnnotation.coordinate.latitude){
+            if(item.placemark.coordinate.longitude == selectedAnnotation.coordinate.longitude){
             TPLocation* selectedLocation=[[TPLocation alloc]init];
             selectedLocation.name=item.name;
             selectedLocation.phoneNumber=item.phoneNumber;
             selectedLocation.url=item.url;
-            selectedLocation.coordinate=item.placemark.coordinate;
+            //Address is a dictionary
+            //selectedLocation.address=item.placemark.addressDictionary;
+            selectedLocation.latitude=item.placemark.coordinate.latitude;
+            selectedLocation.longitude=item.placemark.coordinate.longitude;
+            
             [self.delegate TPLocationViewController:self didSelectLocation:selectedLocation];
+            break;
+            }
         }
     }
 }
