@@ -23,7 +23,7 @@
 }
 
 -(NSString*)description{
-    NSString* description=[NSString stringWithFormat:@"Where:%@ \n When:%@ \n Who:%@ \n Why:%@ \n From:%@",self.location,self.when,[self.who objectAtIndex:0],self.why,self.from];
+    NSString* description=[NSString stringWithFormat:@"Where:%@ \n When:%@ \n Who:%@ \n Why:%@ \n From:%@",self.location,self.when,self.who,self.why,self.from];
     
     return description;
 }

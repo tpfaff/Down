@@ -8,6 +8,7 @@
 
 #import "TPPeopleViewController.h"
 #import "TPConstants.h"
+#import "TPAddFriendsTableViewController.h"
 #import <Parse/Parse.h>
 #import "Masonry/Masonry.h"
 
@@ -23,11 +24,29 @@
         self.tableView.dataSource=self;
         self.tableView.delegate=self;
         self.tableView.separatorStyle=UITableViewCellSeparatorStyleSingleLine;
+        self.tableView.allowsMultipleSelection=YES;
     }
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIView* headerView=[[UIView alloc]init];
+    UIButton* addFriendButton=[UIButton buttonWithType:UIButtonTypeContactAdd];
+    [addFriendButton addTarget:self action:@selector(showAddFriendViewController) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:addFriendButton];
+    [headerView setBackgroundColor:[UIColor grayColor]];
+    [headerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, addFriendButton.frame.size.height+15)];
+    //[self.view addSubview:headerView];
+    self.tableView.tableHeaderView=headerView;
+//    [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.and.trailing.equalTo(self.view);
+//        make.height.equalTo(@75);
+//    }];
+    
+    [addFriendButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(headerView.mas_centerX);
+        make.centerY.equalTo(headerView.mas_centerY);
+    }];
 //    [self.view mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.top.equalTo([self navigationController].view.mas_bottom);
 //    }];
@@ -84,6 +103,23 @@
     self.friendsList=[[PFUser currentUser]objectForKey:kTPFriendsList];
     [self.tableView reloadData];
     
+}
+
+-(NSMutableArray*)getSelectedUsernames{
+    NSArray* selectedIndexPaths=[self.tableView indexPathsForSelectedRows];
+    NSMutableArray* selectedUsernames=[[NSMutableArray alloc]init];
+    
+    for(NSIndexPath* path in selectedIndexPaths){
+        UITableViewCell* cell=[self.tableView cellForRowAtIndexPath:path];
+        [selectedUsernames addObject:cell.textLabel.text];
+    }
+    
+    return selectedUsernames;
+}
+
+-(void)showAddFriendViewController{
+    TPAddFriendsTableViewController* vc=[[TPAddFriendsTableViewController alloc]init];
+    [self.navigationController showViewController:vc sender:nil];
 }
 /*
 #pragma mark - Navigation

@@ -10,4 +10,8 @@
 
 @interface TPPeopleViewController : UITableViewController
 @property (strong,nonatomic) NSArray* friends;
+-(NSMutableArray*)getSelectedUsernames;
+
 @end
+
+

@@ -154,7 +154,9 @@ static NSString* reuseIdentifier;
     
     // !!!: This search is slow for large datasets
     [query whereKey:kTPUserName containsString:name];
-    [query whereKey:kTPUserName notContainedIn:[[PFUser currentUser] objectForKey:kTPFriendsList]];
+    if([[PFUser currentUser]objectForKey:kTPFriendsList]){
+        [query whereKey:kTPUserName notContainedIn:[[PFUser currentUser] objectForKey:kTPFriendsList]];
+    }
     //NSArray* friendsList=[[PFUser currentUser]objectForKey:kTPFriendsList];
     //[query whereKey:kTPFriendsList notContainedIn:@[friendsList]];
     

@@ -34,8 +34,8 @@
         self.locationViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Where" image:nil selectedImage:nil];
         self.locationViewController.delegate=self;
         
-        TPPeopleViewController* peopleViewController=[[TPPeopleViewController alloc]init];
-        peopleViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Who" image:nil selectedImage:nil];
+        self.peopleViewController=[[TPPeopleViewController alloc]init];
+        self.peopleViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Who" image:nil selectedImage:nil];
         
         TPWhenViewController* whenViewController=[[TPWhenViewController alloc]init];
         whenViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"When" image:nil selectedImage:nil];
@@ -45,7 +45,7 @@
         whyViewController.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"Why" image:nil selectedImage:nil];
         whyViewController.delegate=self;
         
-        [self setViewControllers:@[self.locationViewController,whenViewController,whyViewController,peopleViewController] animated:YES];
+        [self setViewControllers:@[self.locationViewController,whenViewController,whyViewController,self.peopleViewController] animated:YES];
       //  [[TPUniverse navigationController]setViewControllers:@[self.locationViewController,peopleViewController,whenViewController,whyViewController]];
         self.event=[[TPEventObject alloc]init];
     }
@@ -200,8 +200,10 @@
     [location setObject:lattitude forKey:kTPLocationLatitude];
     [location setObject:longitude forKey:kTPLocationLongitude];
     
+    self.event.from=[[PFUser currentUser]username];
     
     //[eventInvitation setObject:self.event.location forKey:kTPEventLocation];
+    self.event.who=[self.peopleViewController getSelectedUsernames];
     [eventInvitation setObject:self.event.who forKey:kTPEventInviteList];
     [eventInvitation setObject:self.event.from forKey:kTPEventFrom];
     [eventInvitation setObject:self.event.why forKey:kTPEventMessage];
@@ -217,10 +219,7 @@
     }];
 }
 
--(void)showAddFriendViewController{
-    TPAddFriendsTableViewController* vc=[[TPAddFriendsTableViewController alloc]init];
-    [self.navigationController showViewController:vc sender:nil];
-}
+
 
 #pragma mark - TPLocationViewControllerDelegate
 -(void)TPLocationViewController:(TPLocationViewController *)viewController didSelectLocation:(TPLocation *)location{
