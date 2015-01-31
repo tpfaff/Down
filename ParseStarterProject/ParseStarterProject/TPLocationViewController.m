@@ -76,7 +76,7 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
   //  [self zoomToUserLocation:[locations objectAtIndex:0]];
-    [self zoomToLocation:self.mapView.userLocation.location];
+    //[self zoomToLocation:self.mapView.userLocation.location];
     //self.where=self.mapView.userLocation.description;
 }
 

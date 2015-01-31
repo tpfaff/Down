@@ -111,7 +111,13 @@
     
     for(NSIndexPath* path in selectedIndexPaths){
         UITableViewCell* cell=[self.tableView cellForRowAtIndexPath:path];
-        [selectedUsernames addObject:cell.textLabel.text];
+        NSString* selectedUserName=cell.textLabel.text;
+        PFQuery* query=[PFUser query];
+        [query whereKey:kTPUserName equalTo:selectedUserName];
+        
+        ///!!!: this is a synchronous call :(
+        PFUser* selectedUser=(PFUser*)[query getFirstObject];
+        [selectedUsernames addObject:selectedUser];
     }
     
     return selectedUsernames;

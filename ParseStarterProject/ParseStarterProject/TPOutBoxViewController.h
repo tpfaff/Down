@@ -10,9 +10,7 @@
 #define ParseStarterProject_TPOutBoxViewController_h
 
 @interface TPOutBoxViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) IBOutlet UIView *view;
-
+@property (strong, nonatomic) UITableView *tableView;
 @end
 
 #endif

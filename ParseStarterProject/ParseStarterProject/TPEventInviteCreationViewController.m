@@ -213,13 +213,17 @@
     [eventInvitation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded){
             NSLog(@"Sent invite %@",self.event);
+            UIAlertView* alert=[[UIAlertView alloc]initWithTitle:@"Sent!" message:self.event.description delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alert show];
         }else{
             NSLog(@"Failed to send event invite! : Event:%@  \n Error:%@",self.event,error);
         }
     }];
 }
 
-
+-(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark - TPLocationViewControllerDelegate
 -(void)TPLocationViewController:(TPLocationViewController *)viewController didSelectLocation:(TPLocation *)location{

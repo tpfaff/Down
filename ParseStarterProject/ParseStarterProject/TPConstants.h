@@ -25,4 +25,8 @@
 #define kTPUserName             @"username"
 #define kTPNavigationAndStatusBarHeight 64
 #define kTPFriendsList          @"friends"
+
+//Parse classes
+#define KTPParseEvent           @"Event"
+#define kTPParseUser            @"_user"
 #endif

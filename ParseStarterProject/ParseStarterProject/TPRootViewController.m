@@ -37,7 +37,7 @@
    // self.navigationController=[[UINavigationController alloc]initWithRootViewController:self];
    // [self.view.window setRootViewController:self.navigationController];
     //[self.navigationController pushViewController:self animated:YES];
-    [PFUser logOut];
+    //[PFUser logOut];
     
     
 }

@@ -12,17 +12,31 @@
 #import "TPOutBoxViewController.h"
 #import "TPUniverse.h"
 #import "TPEventInviteCreationViewController.h"
+#import "TPConstants.h"
+#import "Masonry/Masonry.h"
 
 @interface TPOutBoxViewController(){}
-
+@property (strong,nonatomic) NSArray* sentInvites;
 @end
 @implementation TPOutBoxViewController
 
+static NSString* cellID=@"cell";
+
 -(id)init{
     if(self=[super init]){
-       
+        self.tableView=[[UITableView alloc]init];
+        self.tableView.delegate=self;
+        self.tableView.dataSource=self;
     }
   return self;
+}
+
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -34,17 +48,20 @@
     [self navigationItem].title=@"Sent Invites";
     
     NSString* me=[PFUser currentUser].username;
-    PFQuery* messageQuery=[[PFQuery alloc]initWithClassName:@"Message"];
-    [messageQuery whereKey:@"for" equalTo:me];
-    
-    [messageQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if(object){
-            NSLog(@"I got your message : %@",[object objectForKey:@"tuna"]);
+    PFQuery* query=[PFQuery queryWithClassName:KTPParseEvent];
+    [query whereKey:@"From" equalTo:me];
+    ///!!!: this is synchronous
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(!error){
+            self.sentInvites=objects;
+            [self.tableView reloadData];
         }else{
-            NSLog(@"Failed to find object : %@",error);
+            NSLog(@"Error: %@",error);
         }
+        
     }];
 
+    
     //[TPUniverse navigationController].navigationItem.rightBarButtonItem=bbi;
 }
 
@@ -63,4 +80,38 @@
     //vc.hidesBottomBarWhenPushed=YES;
     [[TPUniverse navigationController]pushViewController:vc animated:YES];
 }
+
+#pragma mark - TableView delegate
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell* cell=[self.tableView dequeueReusableCellWithIdentifier:cellID];
+    if(!cell){
+        cell=[[UITableViewCell alloc]init];
+    }
+    
+    PFObject* locationID=[[self.sentInvites objectAtIndex:indexPath.row]objectForKey:kTPEventLocation];
+    PFQuery* locationQuery=[[PFQuery alloc]initWithClassName:kTPEventLocation];
+    PFObject* location=[locationQuery getObjectWithId:locationID.objectId];
+    if([location objectForKey:@"Name"]){
+    NSString* locationName=[location objectForKey:@"Name"];
+        cell.textLabel.text=locationName;
+
+    }else{
+        cell.textLabel.text=@"No name";
+    }
+    
+    return cell;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.sentInvites.count;
+    
+}
+
 @end
