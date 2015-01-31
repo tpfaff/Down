@@ -151,11 +151,12 @@ static NSString* reuseIdentifier;
 
 -(void)searchForName:(NSString*)name{
     PFQuery* query=[[PFQuery alloc]initWithClassName:@"_User"];
-    
+    NSString* me=[[PFUser currentUser]username];
     // !!!: This search is slow for large datasets
     [query whereKey:kTPUserName containsString:name];
     if([[PFUser currentUser]objectForKey:kTPFriendsList]){
         [query whereKey:kTPUserName notContainedIn:[[PFUser currentUser] objectForKey:kTPFriendsList]];
+        [query whereKey:kTPUserName notContainedIn:@[me]];
     }
     //NSArray* friendsList=[[PFUser currentUser]objectForKey:kTPFriendsList];
     //[query whereKey:kTPFriendsList notContainedIn:@[friendsList]];
@@ -170,7 +171,9 @@ static NSString* reuseIdentifier;
     [self.tableView reloadData];
 }
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    [self searchForName:searchText];
+    if(searchText.length!=0){
+        [self searchForName:searchText];
+    }
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

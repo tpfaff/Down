@@ -91,14 +91,16 @@ static NSString* cellID=@"cell";
     
     PFObject* locationID=[[self.sentInvites objectAtIndex:indexPath.row]objectForKey:kTPEventLocation];
     PFQuery* locationQuery=[[PFQuery alloc]initWithClassName:kTPEventLocation];
-    PFObject* location=[locationQuery getObjectWithId:locationID.objectId];
-    if([location objectForKey:@"Name"]){
-    NSString* locationName=[location objectForKey:@"Name"];
-        cell.textLabel.text=locationName;
+    [locationQuery getObjectInBackgroundWithId:locationID.objectId block:^(PFObject *object, NSError *error) {
+        if([object objectForKey:@"Name"]){
+            NSString* locationName=[object objectForKey:@"Name"];
+            cell.textLabel.text=locationName;
+            
+        }else{
+            cell.textLabel.text=@"No name";
+        }
 
-    }else{
-        cell.textLabel.text=@"No name";
-    }
+    }];
     
     return cell;
     
@@ -113,5 +115,6 @@ static NSString* cellID=@"cell";
     return self.sentInvites.count;
     
 }
+
 
 @end
