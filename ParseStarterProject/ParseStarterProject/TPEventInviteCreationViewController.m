@@ -215,6 +215,24 @@
             NSLog(@"Sent invite %@",self.event);
             UIAlertView* alert=[[UIAlertView alloc]initWithTitle:@"Sent!" message:self.event.description delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [alert show];
+            
+            /// !!!: Users can't modify other users, need to use cloud code to do this. bleh.
+            
+//            for(PFUser* invitedUser in self.event.who){
+//                [invitedUser setObject:eventInvitation forKey:@"invitedTo"];
+//                [invitedUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                    if(succeeded){
+//                        NSLog(@"Saved event to user");
+//                    }else{
+//                        NSLog(@"Failed to save event to uesr with error : %@",error);
+//                    }
+//                }];
+//                NSString* userID=[invitedUser objectForKey:@"objectId"];
+//                PFQuery* userQuery=[[PFQuery alloc]initWithClassName:kTPParseUser];
+//                [userQuery getObjectInBackgroundWithId:userID block:^(PFObject *object, NSError *error) {
+//                    <#code#>
+//                }];
+            
         }else{
             NSLog(@"Failed to send event invite! : Event:%@  \n Error:%@",self.event,error);
         }

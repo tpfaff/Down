@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "TPMailBoxViewController.h"
 #import "TPOutBoxViewController.h"
+#import "TPInboxViewController.h"
 #import "TPUniverse.h"
 
 @interface TPMailBoxViewController(){}
@@ -47,6 +48,10 @@
         
     }
     return self;
+}
+- (IBAction)presentInboxViewController:(id)sender {
+    TPInboxViewController* inboxViewController=[[TPInboxViewController alloc]init];
+    [[TPUniverse navigationController]pushViewController:inboxViewController animated:YES];
 }
 - (IBAction)presentOutboxViewController:(id)sender {
         //UITableViewController* outBoxViewController=[[UITableViewController alloc]init];

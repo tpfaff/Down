@@ -58,7 +58,6 @@ static NSString* cellID=@"cell";
         }else{
             NSLog(@"Error: %@",error);
         }
-        
     }];
 
     

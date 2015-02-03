@@ -105,7 +105,7 @@
     
 }
 
--(NSMutableArray*)getSelectedUsernames{
+-(NSArray*)getSelectedUsernames{
     NSArray* selectedIndexPaths=[self.tableView indexPathsForSelectedRows];
     NSMutableArray* selectedUsernames=[[NSMutableArray alloc]init];
     
